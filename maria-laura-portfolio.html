@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maria Laura Prata | AI Solutions Engineer & Data Scientist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Satoshi:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0b;
+            --bg-elevated: #111113;
+            --text: #f5f5f4;
+            --text-muted: #a1a1a1;
+            --accent: #7dd3fc;
+            --accent-soft: rgba(125, 211, 252, 0.1);
+            --gradient-1: #7dd3fc;
+            --gradient-2: #c4b5fd;
+            --gradient-3: #fda4af;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Satoshi', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        /* Noise texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, var(--bg) 0%, transparent 100%);
+        }
+
+        .logo {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 0 4rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .hero-label::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .hero h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease 0.1s forwards;
+            opacity: 0;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 4rem;
+            animation: fadeInUp 0.8s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        .stat {
+            position: relative;
+        }
+
+        .stat-number {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3rem;
+            font-style: italic;
+            color: var(--text);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Floating gradient orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--gradient-1);
+            top: 10%;
+            right: 10%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--gradient-2);
+            bottom: 20%;
+            left: 5%;
+            animation: float 15s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(30px, -30px) rotate(5deg); }
+            50% { transform: translate(-20px, 20px) rotate(-5deg); }
+            75% { transform: translate(10px, 40px) rotate(3deg); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 400;
+            margin-bottom: 4rem;
+        }
+
+        .section-title em {
+            font-style: italic;
+        }
+
+        /* What I Do Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-soft);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Experience Section */
+        .experience-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .experience-item {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+        }
+
+        .experience-date {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .experience-content h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-company {
+            color: var(--accent);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .experience-description {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .experience-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .tag {
+            background: var(--accent-soft);
+            color: var(--accent);
+            padding: 0.35rem 0.85rem;
+            border-radius: 100px;
+            font-size: 0.8rem;
+        }
+
+        /* Featured Project */
+        .featured-project {
+            background: linear-gradient(135deg, rgba(125, 211, 252, 0.1), rgba(196, 181, 253, 0.1));
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-project::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
+        }
+
+        .featured-project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .featured-badge {
+            background: var(--accent);
+            color: var(--bg);
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .featured-year {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .featured-project-content h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .featured-subtitle {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .featured-description {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            max-width: 800px;
+            margin-bottom: 2rem;
+        }
+
+        .featured-description strong {
+            color: var(--text);
+        }
+
+        .featured-highlights {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .highlight-item {
+            text-align: left;
+        }
+
+        .highlight-number {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2rem;
+            font-style: italic;
+            color: var(--accent);
+            margin-bottom: 0.25rem;
+        }
+
+        .highlight-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .featured-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .featured-tech span {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Projects List */
+        .projects-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .project-item {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 2rem;
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .project-item:first-child {
+            border-top: 1px solid var(--border);
+        }
+
+        .project-item:hover {
+            background: linear-gradient(90deg, transparent, rgba(125, 211, 252, 0.03), transparent);
+        }
+
+        .project-item-number {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--text-muted);
+            opacity: 0.5;
+        }
+
+        .project-item-content {
+            max-width: 900px;
+        }
+
+        .project-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-item-header h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .project-item-year {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
+        .project-item-content > p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-item-details {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-block {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .detail-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            opacity: 0.7;
+        }
+
+        .detail-value {
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+
+        .project-item-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-item-tags span {
+            background: var(--accent-soft);
+            color: var(--accent);
+            padding: 0.35rem 0.85rem;
+            border-radius: 100px;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .featured-project {
+                padding: 2rem;
+            }
+
+            .featured-project-content h3 {
+                font-size: 1.75rem;
+            }
+
+            .featured-highlights {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .project-item {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .project-item-number {
+                font-size: 1rem;
+            }
+
+            .project-item-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .project-item-details {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Projects Section */
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+        }
+
+        .testimonial-text {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.25rem;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+        }
+
+        .testimonial-author-info h4 {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .testimonial-author-info span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Skills Section - Fun Version */
+        .skills-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+
+        .skill-bubble {
+            --hue: 200;
+            background: hsla(var(--hue), 70%, 50%, 0.1);
+            border: 1px solid hsla(var(--hue), 70%, 50%, 0.3);
+            color: hsl(var(--hue), 70%, 70%);
+            padding: 0.6rem 1.2rem;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            cursor: default;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: floatIn 0.6s ease backwards;
+            animation-delay: calc(var(--i, 0) * 0.05s);
+        }
+
+        .skill-bubble:nth-child(1) { --i: 1; }
+        .skill-bubble:nth-child(2) { --i: 2; }
+        .skill-bubble:nth-child(3) { --i: 3; }
+        .skill-bubble:nth-child(4) { --i: 4; }
+        .skill-bubble:nth-child(5) { --i: 5; }
+        .skill-bubble:nth-child(6) { --i: 6; }
+        .skill-bubble:nth-child(7) { --i: 7; }
+        .skill-bubble:nth-child(8) { --i: 8; }
+        .skill-bubble:nth-child(9) { --i: 9; }
+        .skill-bubble:nth-child(10) { --i: 10; }
+        .skill-bubble:nth-child(n+11) { --i: 11; }
+        .skill-bubble:nth-child(n+21) { --i: 12; }
+        .skill-bubble:nth-child(n+31) { --i: 13; }
+        .skill-bubble:nth-child(n+41) { --i: 14; }
+
+        @keyframes floatIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .skill-bubble:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: hsla(var(--hue), 70%, 50%, 0.25);
+            border-color: hsla(var(--hue), 70%, 50%, 0.6);
+            box-shadow: 0 10px 30px hsla(var(--hue), 70%, 50%, 0.3),
+                        0 0 20px hsla(var(--hue), 70%, 50%, 0.2);
+            z-index: 10;
+        }
+
+        .skill-bubble.large {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .skill-bubble.xl {
+            padding: 0.9rem 1.8rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: hsla(var(--hue), 70%, 50%, 0.15);
+        }
+
+        .skill-bubble:active {
+            transform: scale(0.95);
+        }
+
+        /* Random subtle floating animation on some bubbles */
+        .skill-bubble:nth-child(3n) {
+            animation: floatIn 0.6s ease backwards, gentleFloat 4s ease-in-out infinite;
+            animation-delay: calc(var(--i, 0) * 0.05s), 0s;
+        }
+
+        .skill-bubble:nth-child(5n) {
+            animation: floatIn 0.6s ease backwards, gentleFloat 5s ease-in-out infinite reverse;
+            animation-delay: calc(var(--i, 0) * 0.05s), 0.5s;
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill-pill {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            padding: 0.75rem 1.5rem;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-pill:hover {
+            background: var(--accent-soft);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            padding: 10rem 0;
+        }
+
+        .contact-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 400;
+            margin-bottom: 2rem;
+        }
+
+        .contact-title em {
+            font-style: italic;
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-link:hover {
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .experience-item {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card:nth-child(1) {
+                grid-column: span 1;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">mlp.</a>
+        <div class="nav-links">
+            <a href="#services">What I Do</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-label">Available for projects</span>
+                <h1>I build <em>intelligent systems</em> that transform how businesses operate.</h1>
+                <p class="hero-description">Data Scientist & AI Solutions Engineer specializing in LLMs, autonomous agents, and production-grade machine learning systems. Turning complex data into actionable intelligence.</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">3+</div>
+                        <div class="stat-label">Years in AI & ML</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">20+</div>
+                        <div class="stat-label">Projects Delivered</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Curiosity</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What I Do Section -->
+    <section id="services">
+        <div class="container">
+            <span class="section-label">Expertise</span>
+            <h2 class="section-title reveal">Things <em>I do</em></h2>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon">🤖</div>
+                    <h3>LLM-Powered Agents</h3>
+                    <p>Design and deploy autonomous AI agents for workflow automation, enterprise decision-support, and complex multi-step reasoning tasks.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">🧠</div>
+                    <h3>NLP & ML Pipelines</h3>
+                    <p>End-to-end development of intent classification, ranking systems, and sentiment analysis using BERT, RoBERTa, and ensemble architectures.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">🔍</div>
+                    <h3>RAG Systems & GraphRAG</h3>
+                    <p>Production-grade Retrieval-Augmented Generation systems. From vector databases to knowledge graphs, building scalable solutions for enterprise environments.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">📊</div>
+                    <h3>Predictive Modeling & Analytics</h3>
+                    <p>Statistical modeling, forecasting, and advanced analytics for business decision-making. From customer churn prediction to financial time-series analysis.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">🔗</div>
+                    <h3>Graph Neural Networks</h3>
+                    <p>Topology-aware predictive models for complex network analysis, resilience assessment, and vulnerability detection in critical systems.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">💬</div>
+                    <h3>Conversational AI</h3>
+                    <p>Digital banking assistants, chatbot optimization, and customer retention analysis through advanced NLP techniques.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" style="background: var(--bg-elevated);">
+        <div class="container">
+            <span class="section-label">Career</span>
+            <h2 class="section-title reveal">Where I've <em>worked</em></h2>
+            <div class="experience-list">
+                <div class="experience-item reveal">
+                    <div class="experience-date">Jan 2025 – Present</div>
+                    <div class="experience-content">
+                        <h3>AI Solutions Engineer</h3>
+                        <div class="experience-company">Intelliway Tecnologia</div>
+                        <p class="experience-description">Developing autonomous AI agents powered by LLMs for workflow automation. Designing secure on-premise AI architectures and integrating systems with REST APIs and unstructured data sources.</p>
+                        <div class="experience-tags">
+                            <span class="tag">LLM Agents</span>
+                            <span class="tag">API Integration</span>
+                            <span class="tag">Enterprise AI</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="experience-item reveal">
+                    <div class="experience-date">Aug 2024 – Jun 2025</div>
+                    <div class="experience-content">
+                        <h3>Data Scientist ML/NLP</h3>
+                        <div class="experience-company">NTT DATA Europe & Latam</div>
+                        <p class="experience-description">Led NLP and ML pipeline enhancements for digital banking assistants at Itaú Bank. Built classification and ranking systems processing 1M+ customer interactions monthly using BERT, XGBoost, and ensemble architectures.</p>
+                        <div class="experience-tags">
+                            <span class="tag">BERT</span>
+                            <span class="tag">XGBoost</span>
+                            <span class="tag">NLP</span>
+                            <span class="tag">Banking</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="experience-item reveal">
+                    <div class="experience-date">Dec 2022 – Dec 2024</div>
+                    <div class="experience-content">
+                        <h3>Scientific Researcher & ML Developer</h3>
+                        <div class="experience-company">LabTel – UFES</div>
+                        <p class="experience-description">Applied research in machine learning and complex networks for Smart Grid resilience. Developed Graph Neural Networks for power system vulnerability analysis and implemented optimization algorithms for critical infrastructure.</p>
+                        <div class="experience-tags">
+                            <span class="tag">GNN</span>
+                            <span class="tag">Smart Grid</span>
+                            <span class="tag">Julia</span>
+                            <span class="tag">Research</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <span class="section-label">Portfolio</span>
+            <h2 class="section-title reveal">Selected <em>projects</em></h2>
+            
+            <!-- Featured Project -->
+            <div class="featured-project reveal">
+                <div class="featured-project-header">
+                    <div class="featured-badge">Featured Project</div>
+                    <div class="featured-year">2024</div>
+                </div>
+                <div class="featured-project-content">
+                    <h3>Digital Banking Virtual Assistant Optimization</h3>
+                    <p class="featured-subtitle">Itaú Bank — NTT DATA</p>
+                    <p class="featured-description">Led the complete overhaul of NLP pipelines for one of Latin America's largest digital banking assistants. The system processes over <strong>1 million customer interactions monthly</strong>, handling intent classification, sentiment analysis, and escalation risk detection in real-time.</p>
+                    <div class="featured-highlights">
+                        <div class="highlight-item">
+                            <div class="highlight-number">1M+</div>
+                            <div class="highlight-label">Monthly interactions processed</div>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-number">40%</div>
+                            <div class="highlight-label">Improvement in escalation prediction</div>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-number">BERT</div>
+                            <div class="highlight-label">Fine-tuned for Portuguese banking</div>
+                        </div>
+                    </div>
+                    <div class="featured-tech">
+                        <span>BERT Fine-tuning</span>
+                        <span>RoBERTa</span>
+                        <span>XGBoost</span>
+                        <span>Ensemble Learning</span>
+                        <span>Sentiment Analysis</span>
+                        <span>Learning-to-Rank</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Cards Grid -->
+            <div class="projects-list">
+                <div class="project-item reveal">
+                    <div class="project-item-number">01</div>
+                    <div class="project-item-content">
+                        <div class="project-item-header">
+                            <h3>LLM Fine-tuning for Domain-Specific Applications</h3>
+                            <span class="project-item-year">2024 – Present</span>
+                        </div>
+                        <p>Specialized in adapting large language models (GPT, BERT, T5) for enterprise use cases through fine-tuning with domain-specific datasets. This includes experimental comparison of training architectures, preprocessing techniques optimization, and preparation of large-scale textual datasets. Developed custom evaluation frameworks to measure model performance on specific business metrics rather than generic benchmarks.</p>
+                        <div class="project-item-details">
+                            <div class="detail-block">
+                                <span class="detail-label">Key Techniques</span>
+                                <span class="detail-value">LoRA, QLoRA, Full Fine-tuning, Prompt Engineering</span>
+                            </div>
+                            <div class="detail-block">
+                                <span class="detail-label">Models</span>
+                                <span class="detail-value">GPT, BERT, T5, LLaMA, Mistral</span>
+                            </div>
+                        </div>
+                        <div class="project-item-tags">
+                            <span>LLM Fine-tuning</span>
+                            <span>Hugging Face</span>
+                            <span>PyTorch</span>
+                            <span>Dataset Curation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-item reveal">
+                    <div class="project-item-number">02</div>
+                    <div class="project-item-content">
+                        <div class="project-item-header">
+                            <h3>Autonomous AI Agents for Enterprise Automation</h3>
+                            <span class="project-item-year">2025</span>
+                        </div>
+                        <p>Architected and deployed autonomous AI agents powered by Large Language Models for complex workflow automation. These agents handle multi-step reasoning tasks, integrate with heterogeneous REST APIs, and process unstructured data from multiple sources. Built secure on-premise deployment pipelines for enterprise clients with strict data governance requirements, ensuring LGPD compliance throughout.</p>
+                        <div class="project-item-details">
+                            <div class="detail-block">
+                                <span class="detail-label">Architecture</span>
+                                <span class="detail-value">RAG, ReAct Agents, Tool Orchestration</span>
+                            </div>
+                            <div class="detail-block">
+                                <span class="detail-label">Deployment</span>
+                                <span class="detail-value">On-premise, Docker, Kubernetes</span>
+                            </div>
+                        </div>
+                        <div class="project-item-tags">
+                            <span>LangChain</span>
+                            <span>LlamaIndex</span>
+                            <span>Neo4j</span>
+                            <span>Qdrant</span>
+                            <span>FastAPI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-item reveal">
+                    <div class="project-item-number">03</div>
+                    <div class="project-item-content">
+                        <div class="project-item-header">
+                            <h3>Smart Grid Resilience Modeling with Graph Neural Networks</h3>
+                            <span class="project-item-year">2022 – 2024</span>
+                        </div>
+                        <p>Conducted applied research at LabTel/UFES developing Graph Neural Networks to model power system resilience and vulnerability propagation in Brazil's energy transmission network. Created topology-aware predictive models for failure detection and ranking, enabling proactive maintenance strategies. Applied Differential Evolution optimization algorithms to improve transmission line risk assessments for critical infrastructure protection.</p>
+                        <div class="project-item-details">
+                            <div class="detail-block">
+                                <span class="detail-label">Impact</span>
+                                <span class="detail-value">Risk management for national power grid</span>
+                            </div>
+                            <div class="detail-block">
+                                <span class="detail-label">Methods</span>
+                                <span class="detail-value">GNN, Differential Evolution, Graph Theory</span>
+                            </div>
+                        </div>
+                        <div class="project-item-tags">
+                            <span>Graph Neural Networks</span>
+                            <span>Python</span>
+                            <span>Julia</span>
+                            <span>Complex Networks</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-item reveal">
+                    <div class="project-item-number">04</div>
+                    <div class="project-item-content">
+                        <div class="project-item-header">
+                            <h3>Customer Churn Prediction & Retention Analytics</h3>
+                            <span class="project-item-year">2024</span>
+                        </div>
+                        <p>Developed a comprehensive customer risk scoring system for digital banking that identifies high-risk interactions before they escalate to human agents. Built ranking algorithms combining NLP-based sentiment analysis with behavioral patterns to prioritize interventions. The recommendation mechanism increased digital service completion rates by surfacing personalized solutions at critical conversation moments.</p>
+                        <div class="project-item-details">
+                            <div class="detail-block">
+                                <span class="detail-label">Outcome</span>
+                                <span class="detail-value">Reduced escalation rates, improved CSAT</span>
+                            </div>
+                            <div class="detail-block">
+                                <span class="detail-label">Scale</span>
+                                <span class="detail-value">Real-time scoring on millions of conversations</span>
+                            </div>
+                        </div>
+                        <div class="project-item-tags">
+                            <span>XGBoost</span>
+                            <span>Random Forest</span>
+                            <span>NLP</span>
+                            <span>Ranking Models</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-item reveal">
+                    <div class="project-item-number">05</div>
+                    <div class="project-item-content">
+                        <div class="project-item-header">
+                            <h3>NVDA Stock Movement Forecasting</h3>
+                            <span class="project-item-year">2024</span>
+                        </div>
+                        <p>Built a deep learning model using LSTM networks to forecast NVIDIA stock price movements based on 8 years of historical data (2016-2024). Implemented feature importance ranking and sequence modeling techniques to identify the most predictive signals. The project explored time-series ranking algorithms to determine which historical patterns have the strongest predictive power for future price action.</p>
+                        <div class="project-item-details">
+                            <div class="detail-block">
+                                <span class="detail-label">Data</span>
+                                <span class="detail-value">8 years of NVDA price/volume data</span>
+                            </div>
+                            <div class="detail-block">
+                                <span class="detail-label">Architecture</span>
+                                <span class="detail-value">LSTM with attention mechanisms</span>
+                            </div>
+                        </div>
+                        <div class="project-item-tags">
+                            <span>TensorFlow</span>
+                            <span>Keras</span>
+                            <span>LSTM</span>
+                            <span>Time Series</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-item reveal">
+                    <div class="project-item-number">06</div>
+                    <div class="project-item-content">
+                        <div class="project-item-header">
+                            <h3>Monetary Policy Impact on Industrial Stocks</h3>
+                            <span class="project-item-year">2025</span>
+                        </div>
+                        <p>Conducting econometric analysis of how central bank interest rate decisions (Brazil's Selic and US Fed Funds Rate) affect Brazilian industrial stock performance on B3. Developing ranking models and performance scoring algorithms to identify which sectors show the strongest correlation with monetary policy shifts, providing quantitative insights for risk assessment and investment strategy formulation.</p>
+                        <div class="project-item-details">
+                            <div class="detail-block">
+                                <span class="detail-label">Focus</span>
+                                <span class="detail-value">B3 industrial sector analysis</span>
+                            </div>
+                            <div class="detail-block">
+                                <span class="detail-label">Methods</span>
+                                <span class="detail-value">Econometrics, Statistical Modeling, Correlation Analysis</span>
+                            </div>
+                        </div>
+                        <div class="project-item-tags">
+                            <span>Econometrics</span>
+                            <span>Python</span>
+                            <span>Statistical Modeling</span>
+                            <span>Finance</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-item reveal">
+                    <div class="project-item-number">07</div>
+                    <div class="project-item-content">
+                        <div class="project-item-header">
+                            <h3>Workforce Analytics & Mental Health Leave Prediction</h3>
+                            <span class="project-item-year">2024</span>
+                        </div>
+                        <p>Applied clustering and analytical modeling to understand employee absence patterns, with a focus on mental health leave analysis. Used unsupervised learning techniques (K-Means, DBSCAN, hierarchical clustering) to identify risk segments and inform HR policy decisions. The insights helped optimize resource allocation and develop proactive support programs for at-risk employee groups.</p>
+                        <div class="project-item-details">
+                            <div class="detail-block">
+                                <span class="detail-label">Techniques</span>
+                                <span class="detail-value">Clustering, Segmentation, Pattern Analysis</span>
+                            </div>
+                            <div class="detail-block">
+                                <span class="detail-label">Application</span>
+                                <span class="detail-value">HR Analytics, Workforce Planning</span>
+                            </div>
+                        </div>
+                        <div class="project-item-tags">
+                            <span>K-Means</span>
+                            <span>DBSCAN</span>
+                            <span>Scikit-learn</span>
+                            <span>HR Analytics</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills-section" style="background: var(--bg-elevated);">
+        <div class="container">
+            <span class="section-label">Technical</span>
+            <h2 class="section-title reveal">Skills & <em>tools</em></h2>
+            <div class="skills-cloud reveal">
+                <span class="skill-bubble" style="--hue: 200;">🐍 Python</span>
+                <span class="skill-bubble" style="--hue: 280;">SQL</span>
+                <span class="skill-bubble" style="--hue: 320;">Julia</span>
+                <span class="skill-bubble" style="--hue: 50;">JavaScript</span>
+                <span class="skill-bubble" style="--hue: 180;">C#</span>
+                <span class="skill-bubble large" style="--hue: 25;">🔥 PyTorch</span>
+                <span class="skill-bubble" style="--hue: 35;">TensorFlow</span>
+                <span class="skill-bubble" style="--hue: 150;">Keras</span>
+                <span class="skill-bubble" style="--hue: 200;">Scikit-learn</span>
+                <span class="skill-bubble" style="--hue: 100;">XGBoost</span>
+                <span class="skill-bubble" style="--hue: 170;">LightGBM</span>
+                <span class="skill-bubble large" style="--hue: 280;">🤖 BERT</span>
+                <span class="skill-bubble" style="--hue: 300;">RoBERTa</span>
+                <span class="skill-bubble large" style="--hue: 160;">✨ GPT</span>
+                <span class="skill-bubble" style="--hue: 220;">T5</span>
+                <span class="skill-bubble large" style="--hue: 340;">🦙 LLaMA</span>
+                <span class="skill-bubble" style="--hue: 30;">Mistral</span>
+                <span class="skill-bubble" style="--hue: 45;">🤗 Hugging Face</span>
+                <span class="skill-bubble" style="--hue: 190;">spaCy</span>
+                <span class="skill-bubble" style="--hue: 260;">NLTK</span>
+                <span class="skill-bubble large" style="--hue: 120;">🦜 LangChain</span>
+                <span class="skill-bubble large" style="--hue: 270;">🦙 LlamaIndex</span>
+                <span class="skill-bubble xl" style="--hue: 180;">🔍 RAG</span>
+                <span class="skill-bubble xl" style="--hue: 300;">🕸️ GraphRAG</span>
+                <span class="skill-bubble" style="--hue: 60;">Prompt Engineering</span>
+                <span class="skill-bubble" style="--hue: 350;">Fine-tuning</span>
+                <span class="skill-bubble" style="--hue: 200;">LoRA</span>
+                <span class="skill-bubble" style="--hue: 240;">QLoRA</span>
+                <span class="skill-bubble large" style="--hue: 140;">🔗 Neo4j</span>
+                <span class="skill-bubble" style="--hue: 320;">Qdrant</span>
+                <span class="skill-bubble" style="--hue: 50;">Elasticsearch</span>
+                <span class="skill-bubble" style="--hue: 210;">FAISS</span>
+                <span class="skill-bubble" style="--hue: 280;">ChromaDB</span>
+                <span class="skill-bubble" style="--hue: 220;">🐘 PostgreSQL</span>
+                <span class="skill-bubble" style="--hue: 0;">Redis</span>
+                <span class="skill-bubble" style="--hue: 120;">MongoDB</span>
+                <span class="skill-bubble" style="--hue: 35;">☁️ AWS</span>
+                <span class="skill-bubble" style="--hue: 210;">Google Cloud</span>
+                <span class="skill-bubble" style="--hue: 230;">BigQuery</span>
+                <span class="skill-bubble" style="--hue: 200;">🐳 Docker</span>
+                <span class="skill-bubble" style="--hue: 230;">☸️ Kubernetes</span>
+                <span class="skill-bubble" style="--hue: 20;">Kafka</span>
+                <span class="skill-bubble" style="--hue: 170;">Airflow</span>
+                <span class="skill-bubble" style="--hue: 190;">MLflow</span>
+                <span class="skill-bubble" style="--hue: 150;">⚡ FastAPI</span>
+                <span class="skill-bubble" style="--hue: 270;">Graph Neural Networks</span>
+                <span class="skill-bubble" style="--hue: 330;">LSTM</span>
+                <span class="skill-bubble" style="--hue: 100;">📈 Time Series</span>
+                <span class="skill-bubble" style="--hue: 180;">Clustering</span>
+                <span class="skill-bubble" style="--hue: 290;">Learning-to-Rank</span>
+                <span class="skill-bubble" style="--hue: 60;">💬 Sentiment Analysis</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="contact-title reveal">Let's build something <em>intelligent</em></h2>
+            <div class="contact-links reveal">
+                <a href="mailto:pratamarialaura@gmail.com" class="contact-link" title="pratamarialaura@gmail.com">
+                    <span>→</span> pratamarialaura@gmail.com
+                </a>
+                <a href="https://www.linkedin.com/in/marialauraprata" class="contact-link" target="_blank">
+                    <span>→</span> LinkedIn
+                </a>
+                <a href="https://github.com/thefortunetella" class="contact-link" target="_blank">
+                    <span>→</span> GitHub
+                </a>
+                <a href="https://wa.me/5527999218414" class="contact-link" target="_blank">
+                    <span>→</span> WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Maria Laura Prata. Crafted with care in Brazil.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            revealElements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect for orbs
+        document.addEventListener('mousemove', (e) => {
+            const orbs = document.querySelectorAll('.orb');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            orbs.forEach((orb, index) => {
+                const speed = (index + 1) * 20;
+                orb.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
