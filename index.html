@@ -4,64 +4,152 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maria Laura Prata | AI Solutions Engineer & Data Scientist</title>
+    <meta name="description" content="Maria Laura Prata — AI Solutions Engineer working on enterprise knowledge graphs, RAG/GraphRAG, AI agents and production machine learning.">
+    <meta property="og:title" content="Maria Laura Prata | AI Solutions Engineer & Data Scientist">
+    <meta property="og:description" content="I build intelligent systems that transform how businesses operate.">
+    <meta name="theme-color" content="#0a0a0b">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Satoshi:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+    <script>
+        // Apply the saved or system theme before first paint
+        (() => {
+            let t = null;
+            try { t = localStorage.getItem('theme'); } catch (e) {}
+            if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+            document.documentElement.dataset.theme = t;
+        })();
+    </script>
     <style>
         :root {
             --bg: #0a0a0b;
             --bg-elevated: #111113;
+            --bg-card: #151518;
             --text: #f5f5f4;
-            --text-muted: #a1a1a1;
+            --text-muted: #a1a1a8;
+            --text-dim: #6b6b75;
             --accent: #7dd3fc;
+            --accent-2: #c4b5fd;
+            --accent-3: #fda4af;
+            --accent-rgb: 125, 211, 252;
+            --accent-2-rgb: 196, 181, 253;
+            --text-rgb: 245, 245, 244;
+            --bg-rgb: 10, 10, 11;
+            --bg-elev-rgb: 17, 17, 19;
+            --shade-rgb: 4, 4, 10;
+            --on-accent: #0a0a0b;
+            --node-used: #c4b5fd;
+            --node-soft: #fda4af;
+            --node-idle: #55555f;
+            --orb-opacity: 0.35;
             --accent-soft: rgba(125, 211, 252, 0.1);
-            --gradient-1: #7dd3fc;
-            --gradient-2: #c4b5fd;
-            --gradient-3: #fda4af;
+            --gradient: linear-gradient(120deg, var(--accent), var(--accent-2) 55%, var(--accent-3));
             --border: rgba(255, 255, 255, 0.08);
+            --border-strong: rgba(255, 255, 255, 0.18);
+            --serif: 'Instrument Serif', Georgia, serif;
+            --sans: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --ease: cubic-bezier(0.22, 1, 0.36, 1);
+            color-scheme: dark;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root[data-theme="light"] {
+            --bg: #f6f6fa;
+            --bg-elevated: #eceef5;
+            --bg-card: #ffffff;
+            --text: #13131c;
+            --text-muted: #53536a;
+            --text-dim: #85859a;
+            --accent: #0284c7;
+            --accent-2: #7c3aed;
+            --accent-3: #db2777;
+            --accent-rgb: 2, 132, 199;
+            --accent-2-rgb: 124, 58, 237;
+            --text-rgb: 19, 19, 28;
+            --bg-rgb: 246, 246, 250;
+            --bg-elev-rgb: 236, 238, 245;
+            --shade-rgb: 30, 30, 50;
+            --on-accent: #ffffff;
+            --node-used: #7c3aed;
+            --node-soft: #db2777;
+            --node-idle: #a3a3b5;
+            --orb-opacity: 0.22;
+            --accent-soft: rgba(2, 132, 199, 0.1);
+            --border: rgba(19, 19, 28, 0.1);
+            --border-strong: rgba(19, 19, 28, 0.2);
+            color-scheme: light;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 
         body {
-            font-family: 'Satoshi', -apple-system, sans-serif;
+            font-family: var(--sans);
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        ::selection {
-            background: var(--accent);
-            color: var(--bg);
-        }
+        body.locked { overflow: hidden; }
+
+        ::selection { background: var(--accent); color: var(--on-accent); }
+
+        em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+
+        a { color: inherit; }
+
+        button { font: inherit; color: inherit; }
 
         /* Noise texture overlay */
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            opacity: 0.03;
+            opacity: 0.035;
             pointer-events: none;
             z-index: 1000;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        /* Custom cursor (fine pointers only) */
+        .cursor, .cursor-ring { display: none; }
+        @media (pointer: fine) {
+            body.has-cursor, body.has-cursor a, body.has-cursor button, body.has-cursor [data-cursor] { cursor: none; }
+            .cursor, .cursor-ring {
+                display: block;
+                position: fixed;
+                top: 0;
+                left: 0;
+                pointer-events: none;
+                z-index: 2000;
+                border-radius: 50%;
+                transform: translate3d(-100px, -100px, 0);
+            }
+            .cursor { width: 6px; height: 6px; margin: -3px 0 0 -3px; background: var(--text); }
+            .cursor-ring {
+                width: 36px;
+                height: 36px;
+                margin: -18px 0 0 -18px;
+                border: 1px solid rgba(var(--text-rgb), 0.4);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.68rem;
+                font-weight: 500;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: var(--on-accent);
+                transition: width 0.35s var(--ease), height 0.35s var(--ease), margin 0.35s var(--ease), background 0.35s var(--ease), border-color 0.35s var(--ease);
+            }
+            .cursor-ring span { opacity: 0; transition: opacity 0.2s; }
+            .cursor-ring.hover { width: 56px; height: 56px; margin: -28px 0 0 -28px; border-color: var(--accent); }
+            .cursor-ring.label { width: 84px; height: 84px; margin: -42px 0 0 -42px; background: var(--accent); border-color: var(--accent); }
+            .cursor-ring.label span { opacity: 1; }
         }
 
         /* Navigation */
@@ -70,62 +158,118 @@
             top: 0;
             left: 0;
             right: 0;
-            padding: 1.5rem 2rem;
+            padding: 1.4rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 100;
             background: linear-gradient(to bottom, var(--bg) 0%, transparent 100%);
+            transition: padding 0.4s var(--ease), background 0.4s;
         }
-
+        nav.scrolled {
+            padding: 0.9rem 2rem;
+            background: rgba(var(--bg-rgb), 0.8);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+        }
         .logo {
-            font-family: 'Instrument Serif', serif;
-            font-size: 1.5rem;
+            font-family: var(--serif);
+            font-size: 1.6rem;
             font-style: italic;
             color: var(--text);
             text-decoration: none;
         }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-        }
-
+        .logo span { color: var(--accent); }
+        .logo span { background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-right { display: flex; align-items: center; gap: 1.2rem; }
+        .nav-links { margin-right: 0.8rem; }
+        .nav-links { display: flex; gap: 2.2rem; }
         .nav-links a {
             color: var(--text-muted);
             text-decoration: none;
             font-size: 0.9rem;
+            position: relative;
             transition: color 0.3s ease;
         }
-
-        .nav-links a:hover {
-            color: var(--text);
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            height: 1px;
+            width: 100%;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s var(--ease);
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--text); }
+        .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); transform-origin: left; }
+        .kbd-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: none;
+            border: 1px solid var(--border-strong);
+            border-radius: 999px;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: border-color 0.3s, color 0.3s;
+        }
+        .kbd-btn:hover { border-color: var(--accent); color: var(--text); }
+        .kbd-btn kbd { font-family: var(--sans); font-size: 0.72rem; color: var(--text); }
+        .theme-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid var(--border-strong);
+            background: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: border-color 0.3s, color 0.3s, transform 0.6s var(--ease);
+        }
+        .theme-btn:hover { border-color: var(--accent); color: var(--text); transform: rotate(25deg); }
+        :root[data-theme="dark"] .theme-btn .i-moon, :root[data-theme="light"] .theme-btn .i-sun { display: none; }
+        .menu-btn {
+            display: none;
+            background: none;
+            border: 1px solid var(--border-strong);
+            border-radius: 999px;
+            padding: 0.45rem 1rem;
+            font-size: 0.85rem;
+            cursor: pointer;
         }
 
-        /* Hero Section */
+        /* Hero */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 8rem 0 4rem;
+            padding: 7rem 0 3rem;
             position: relative;
+            overflow: hidden;
+            isolation: isolate;
         }
-
-        .hero-content {
-            max-width: 900px;
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+            gap: 2rem;
+            align-items: center;
         }
-
         .hero-label {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
             font-size: 0.85rem;
             color: var(--text-muted);
             margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease forwards;
-            opacity: 0;
         }
-
         .hero-label::before {
             content: '';
             width: 8px;
@@ -134,779 +278,910 @@
             border-radius: 50%;
             animation: pulse 2s ease-in-out infinite;
         }
-
         @keyframes pulse {
             0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
+            50% { opacity: 0.5; transform: scale(1.25); }
         }
-
         .hero h1 {
-            font-family: 'Instrument Serif', serif;
-            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-family: var(--serif);
+            font-size: clamp(2.9rem, 6vw, 5rem);
             font-weight: 400;
-            line-height: 1.1;
+            line-height: 1.02;
+            letter-spacing: -0.02em;
             margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease 0.1s forwards;
-            opacity: 0;
         }
-
-        .hero h1 em {
-            font-style: italic;
-            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .hero h1 em, .hero h1 em span { background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; padding-right: 0.06em; }
+        .hero h1 .word { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.08em; }
+        .hero h1 .word > span {
+            display: inline-block;
+            transform: translateY(105%);
+            animation: rise 1s var(--ease) forwards;
+            animation-delay: calc(var(--i) * 60ms + 150ms);
         }
-
+        @keyframes rise { to { transform: none; } }
         .hero-description {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             color: var(--text-muted);
-            max-width: 600px;
-            margin-bottom: 3rem;
-            animation: fadeInUp 0.8s ease 0.2s forwards;
+            max-width: 560px;
+            margin-bottom: 2.5rem;
             opacity: 0;
+            animation: fadeIn 1s var(--ease) 0.9s forwards;
         }
-
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+        .hero-ctas {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-bottom: 3.5rem;
+            opacity: 0;
+            animation: fadeIn 1s var(--ease) 1.05s forwards;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.95rem 1.6rem;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid var(--border-strong);
+            background: transparent;
+            cursor: pointer;
+            transition: background 0.35s var(--ease), color 0.35s var(--ease), border-color 0.35s var(--ease);
+            will-change: transform;
+        }
+        .btn:hover { border-color: var(--text); }
+        .btn.solid { background: var(--text); color: var(--bg); border-color: var(--text); }
+        .btn.solid:hover { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
         .hero-stats {
             display: flex;
-            gap: 4rem;
-            animation: fadeInUp 0.8s ease 0.3s forwards;
+            gap: 3rem;
+            flex-wrap: wrap;
             opacity: 0;
+            animation: fadeIn 1s var(--ease) 1.2s forwards;
         }
+        .stat-number { font-family: var(--serif); font-size: 2.6rem; line-height: 1.1; }
+        .stat-label { font-size: 0.85rem; color: var(--text-muted); }
 
-        .stat {
+        /* Hero knowledge graph */
+        .graph-wrap {
             position: relative;
+            height: min(620px, 72vh);
+            opacity: 0;
+            animation: fadeIn 1.4s var(--ease) 0.5s forwards;
         }
-
-        .stat-number {
-            font-family: 'Instrument Serif', serif;
-            font-size: 3rem;
-            font-style: italic;
-            color: var(--text);
+        #kg { width: 100%; height: 100%; display: block; touch-action: none; }
+        .graph-hint {
+            position: absolute;
+            bottom: 0.4rem;
+            right: 0;
+            font-size: 0.78rem;
+            color: var(--text-dim);
+            pointer-events: none;
         }
-
-        .stat-label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        /* Floating gradient orbs */
+        .graph-hint b { color: var(--text-muted); font-weight: 500; }
         .orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.4;
+            filter: blur(90px);
+            opacity: var(--orb-opacity);
             pointer-events: none;
+            z-index: -1;
         }
-
-        .orb-1 {
-            width: 400px;
-            height: 400px;
-            background: var(--gradient-1);
-            top: 10%;
-            right: 10%;
-            animation: float 20s ease-in-out infinite;
-        }
-
-        .orb-2 {
-            width: 300px;
-            height: 300px;
-            background: var(--gradient-2);
-            bottom: 20%;
-            left: 5%;
-            animation: float 15s ease-in-out infinite reverse;
-        }
-
+        .orb-1 { width: 420px; height: 420px; background: var(--accent); top: 8%; right: 6%; animation: float 22s ease-in-out infinite; }
+        .orb-2 { width: 320px; height: 320px; background: var(--accent-2); bottom: 12%; left: 2%; animation: float 17s ease-in-out infinite reverse; }
         @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(30px, -30px) rotate(5deg); }
-            50% { transform: translate(-20px, 20px) rotate(-5deg); }
-            75% { transform: translate(10px, 40px) rotate(3deg); }
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(30px, -30px); }
+            50% { transform: translate(-20px, 20px); }
+            75% { transform: translate(10px, 40px); }
         }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .stars {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.5;
+            background-image:
+                radial-gradient(1px 1px at 12% 22%, rgba(var(--text-rgb), 0.7), transparent),
+                radial-gradient(1px 1px at 28% 78%, rgba(var(--text-rgb), 0.5), transparent),
+                radial-gradient(1.5px 1.5px at 44% 12%, rgba(var(--accent-rgb), 0.8), transparent),
+                radial-gradient(1px 1px at 63% 64%, rgba(var(--text-rgb), 0.5), transparent),
+                radial-gradient(1px 1px at 78% 30%, rgba(var(--text-rgb), 0.6), transparent),
+                radial-gradient(1.5px 1.5px at 88% 82%, rgba(var(--accent-2-rgb), 0.8), transparent),
+                radial-gradient(1px 1px at 6% 58%, rgba(var(--text-rgb), 0.4), transparent),
+                radial-gradient(1px 1px at 52% 44%, rgba(var(--text-rgb), 0.35), transparent),
+                radial-gradient(1px 1px at 35% 52%, rgba(var(--text-rgb), 0.4), transparent),
+                radial-gradient(1px 1px at 94% 12%, rgba(var(--text-rgb), 0.5), transparent);
+            animation: twinkle 6s ease-in-out infinite alternate;
         }
+        @keyframes twinkle { from { opacity: 0.35; } to { opacity: 0.7; } }
+        :root[data-theme="light"] .stars { display: none; }
 
-        /* Section Styles */
-        section {
-            padding: 8rem 0;
-            position: relative;
+        /* Marquee: rolling tagline */
+        .marquee {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+            padding: 1.3rem 0;
+            background: var(--bg-elevated);
+            mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+            -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
         }
-
-        .section-label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: scroll 42s linear infinite;
+        }
+        .marquee:hover .marquee-track { animation-play-state: paused; }
+        .marquee-item {
+            font-family: var(--serif);
+            font-size: clamp(1.4rem, 2.6vw, 2rem);
             color: var(--text-muted);
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.3s;
+        }
+        .marquee-item::after {
+            content: '✦';
+            font-family: var(--sans);
+            font-size: 0.75rem;
+            margin: 0 2.4rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .marquee-item em { background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; padding-right: 0.05em; }
+        .marquee:hover .marquee-item { color: var(--text); }
+        @keyframes scroll { to { transform: translateX(-50%); } }
+
+        /* Sections */
+        section { padding: 5.5rem 0; position: relative; }
+        .section-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--accent);
             margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
         }
-
+        .section-label::before { content: ''; width: 28px; height: 1px; background: var(--accent); }
         .section-title {
-            font-family: 'Instrument Serif', serif;
-            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-family: var(--serif);
+            font-size: clamp(2.6rem, 5.5vw, 4.2rem);
             font-weight: 400;
-            margin-bottom: 4rem;
+            line-height: 1.05;
+            margin-bottom: 2.8rem;
         }
+        .section-title em { background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; padding-right: 0.06em; }
 
-        .section-title em {
-            font-style: italic;
-        }
+        .reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+        .reveal.active { opacity: 1; transform: none; }
 
-        /* What I Do Section */
+        /* Services */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid var(--border);
+            border-left: 1px solid var(--border);
         }
-
         .service-card {
-            background: var(--bg-elevated);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2.5rem;
-            transition: all 0.4s ease;
             position: relative;
+            padding: 2.6rem 2.2rem 2.8rem;
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
             overflow: hidden;
         }
-
         .service-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2));
+            inset: 0;
+            background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), rgba(var(--accent-rgb), 0.1), transparent 60%);
             opacity: 0;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.4s;
+            pointer-events: none;
         }
+        .service-card:hover::before { opacity: 1; }
+        .service-num { font-family: var(--serif); font-style: italic; color: var(--text-dim); font-size: 1.1rem; margin-bottom: 2.4rem; display: block; transition: color 0.4s; }
+        .service-card:hover .service-num { color: var(--accent); }
+        .service-card h3 { font-size: 1.25rem; font-weight: 500; margin-bottom: 0.8rem; }
+        .service-card p { color: var(--text-muted); font-size: 0.95rem; }
 
-        .service-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(255, 255, 255, 0.15);
+        /* Experience */
+        .experience-list { border-top: 1px solid var(--border); }
+        .exp-item { border-bottom: 1px solid var(--border); }
+        .exp-head {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 200px 1fr auto;
+            gap: 2rem;
+            align-items: baseline;
+            padding: 2.4rem 0;
+            background: none;
+            border: none;
+            text-align: left;
+            cursor: pointer;
         }
-
-        .service-card:hover::before {
-            opacity: 1;
-        }
-
-        .service-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--accent-soft);
-            border-radius: 12px;
+        .exp-date { color: var(--text-dim); font-size: 0.9rem; }
+        .exp-title { font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.3rem); line-height: 1.15; transition: transform 0.5s var(--ease); display: inline-block; }
+        .exp-company { display: block; color: var(--accent); font-size: 0.95rem; margin-top: 0.3rem; }
+        .exp-head:hover .exp-title { transform: translateX(8px); }
+        .exp-toggle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--border-strong);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
+            align-self: center;
+            transition: transform 0.5s var(--ease), background 0.3s, border-color 0.3s;
         }
-
-        .service-card h3 {
-            font-size: 1.25rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-
-        .service-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* Experience Section */
-        .experience-list {
-            display: flex;
-            flex-direction: column;
-            gap: 3rem;
-        }
-
-        .experience-item {
+        .exp-item.open .exp-toggle { transform: rotate(45deg); background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+        .exp-body {
             display: grid;
-            grid-template-columns: 200px 1fr;
-            gap: 4rem;
-            padding-bottom: 3rem;
-            border-bottom: 1px solid var(--border);
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.6s var(--ease);
         }
+        .exp-item.open .exp-body { grid-template-rows: 1fr; }
+        .exp-body > div { overflow: hidden; }
+        .exp-inner { padding: 0 0 2.6rem calc(200px + 2rem); }
+        .exp-description { color: var(--text-muted); max-width: 720px; margin-bottom: 1.4rem; font-size: 1.02rem; }
+        .exp-highlights { list-style: none; display: grid; gap: 0.7rem; max-width: 760px; margin-bottom: 1.4rem; }
+        .exp-highlights li { color: var(--text-muted); font-size: 0.95rem; padding-left: 1.4rem; position: relative; }
+        .exp-highlights li::before { content: ''; position: absolute; left: 0; top: 0.7em; width: 7px; height: 1px; background: var(--accent); }
+        .exp-highlights strong { color: var(--text); font-weight: 500; }
 
-        .experience-item:last-child {
-            border-bottom: none;
-        }
-
-        .experience-date {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .experience-content h3 {
-            font-size: 1.5rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-
-        .experience-company {
-            color: var(--accent);
-            font-size: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .experience-description {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .experience-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
-        }
-
+        .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
         .tag {
+            font-size: 0.78rem;
+            padding: 0.35rem 0.85rem;
+            border-radius: 999px;
             background: var(--accent-soft);
             color: var(--accent);
-            padding: 0.35rem 0.85rem;
-            border-radius: 100px;
-            font-size: 0.8rem;
         }
+        .tag.plain { background: transparent; border: 1px solid var(--border-strong); color: var(--text-muted); }
 
-        /* Featured Project */
-        .featured-project {
-            background: linear-gradient(135deg, rgba(125, 211, 252, 0.1), rgba(196, 181, 253, 0.1));
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 3rem;
-            margin-bottom: 4rem;
+        /* Projects */
+        .featured-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 3.5rem; }
+        .featured {
             position: relative;
+            text-align: left;
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.07), rgba(var(--accent-2-rgb), 0.07)), var(--bg-card);
+            padding: 2.4rem;
+            cursor: pointer;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: border-color 0.4s, opacity 0.9s var(--ease), transform 0.9s var(--ease);
         }
-
-        .featured-project::before {
+        .featured::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
+            inset: 0;
+            background: radial-gradient(500px circle at var(--mx, 50%) var(--my, 0%), rgba(var(--accent-rgb), 0.1), rgba(var(--accent-2-rgb), 0.06) 35%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
         }
-
-        .featured-project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
+        .featured:hover { border-color: var(--border-strong); }
+        .featured:hover::before { opacity: 1; }
+        .featured-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.4rem; }
         .featured-badge {
-            background: var(--accent);
-            color: var(--bg);
-            padding: 0.4rem 1rem;
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .featured-year {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .featured-project-content h3 {
-            font-family: 'Instrument Serif', serif;
-            font-size: 2.5rem;
-            font-weight: 400;
-            margin-bottom: 0.5rem;
-        }
-
-        .featured-subtitle {
-            color: var(--accent);
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .featured-description {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            line-height: 1.7;
-            max-width: 800px;
-            margin-bottom: 2rem;
-        }
-
-        .featured-description strong {
-            color: var(--text);
-        }
-
-        .featured-highlights {
-            display: flex;
-            gap: 3rem;
-            margin-bottom: 2rem;
-            padding: 1.5rem 0;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .highlight-item {
-            text-align: left;
-        }
-
-        .highlight-number {
-            font-family: 'Instrument Serif', serif;
-            font-size: 2rem;
-            font-style: italic;
-            color: var(--accent);
-            margin-bottom: 0.25rem;
-        }
-
-        .highlight-label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .featured-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .featured-tech span {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            padding: 0.5rem 1rem;
-            border-radius: 100px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        /* Projects List */
-        .projects-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-
-        .project-item {
-            display: grid;
-            grid-template-columns: 80px 1fr;
-            gap: 2rem;
-            padding: 3rem 0;
-            border-bottom: 1px solid var(--border);
-            transition: all 0.3s ease;
-        }
-
-        .project-item:first-child {
-            border-top: 1px solid var(--border);
-        }
-
-        .project-item:hover {
-            background: linear-gradient(90deg, transparent, rgba(125, 211, 252, 0.03), transparent);
-        }
-
-        .project-item-number {
-            font-family: 'Instrument Serif', serif;
-            font-size: 1.5rem;
-            font-style: italic;
-            color: var(--text-muted);
-            opacity: 0.5;
-        }
-
-        .project-item-content {
-            max-width: 900px;
-        }
-
-        .project-item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .project-item-header h3 {
-            font-size: 1.5rem;
-            font-weight: 500;
-            line-height: 1.3;
-        }
-
-        .project-item-year {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            white-space: nowrap;
-        }
-
-        .project-item-content > p {
-            color: var(--text-muted);
-            font-size: 1rem;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-item-details {
-            display: flex;
-            gap: 3rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .detail-block {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-
-        .detail-label {
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: var(--text-muted);
-            opacity: 0.7;
-        }
-
-        .detail-value {
-            font-size: 0.9rem;
-            color: var(--text);
-        }
-
-        .project-item-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .project-item-tags span {
-            background: var(--accent-soft);
+            padding: 0.4rem 0.9rem;
+            border-radius: 999px;
+            border: 1px solid rgba(var(--accent-rgb), 0.4);
             color: var(--accent);
-            padding: 0.35rem 0.85rem;
-            border-radius: 100px;
-            font-size: 0.8rem;
         }
-
-        @media (max-width: 768px) {
-            .featured-project {
-                padding: 2rem;
-            }
-
-            .featured-project-content h3 {
-                font-size: 1.75rem;
-            }
-
-            .featured-highlights {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-
-            .project-item {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .project-item-number {
-                font-size: 1rem;
-            }
-
-            .project-item-header {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
-            .project-item-details {
-                flex-direction: column;
-                gap: 1rem;
-            }
-        }
-
-        /* Projects Section */
-        /* Testimonials */
-        .testimonials-grid {
+        .featured-year { color: var(--text-dim); font-size: 0.9rem; transition: opacity 0.3s; }
+        .featured h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.8rem, 3vw, 2.5rem); line-height: 1.1; margin-bottom: 0.5rem; }
+        .featured-subtitle { color: var(--accent); margin-bottom: 1.2rem; }
+        .featured-description { color: var(--text-muted); margin-bottom: 2rem; }
+        .featured-description strong { color: var(--text); font-weight: 500; }
+        .featured-highlights {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-
-        .testimonial-card {
-            background: var(--bg-elevated);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2.5rem;
-        }
-
-        .testimonial-text {
-            font-family: 'Instrument Serif', serif;
-            font-size: 1.25rem;
-            font-style: italic;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
+            grid-template-columns: repeat(3, 1fr);
             gap: 1rem;
-        }
-
-        .testimonial-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
-        }
-
-        .testimonial-author-info h4 {
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        .testimonial-author-info span {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        /* Skills Section - Fun Version */
-        .skills-cloud {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            padding: 2rem 0;
-        }
-
-        .skill-bubble {
-            --hue: 200;
-            background: hsla(var(--hue), 70%, 50%, 0.1);
-            border: 1px solid hsla(var(--hue), 70%, 50%, 0.3);
-            color: hsl(var(--hue), 70%, 70%);
-            padding: 0.6rem 1.2rem;
-            border-radius: 100px;
-            font-size: 0.9rem;
-            cursor: default;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            animation: floatIn 0.6s ease backwards;
-            animation-delay: calc(var(--i, 0) * 0.05s);
-        }
-
-        .skill-bubble:nth-child(1) { --i: 1; }
-        .skill-bubble:nth-child(2) { --i: 2; }
-        .skill-bubble:nth-child(3) { --i: 3; }
-        .skill-bubble:nth-child(4) { --i: 4; }
-        .skill-bubble:nth-child(5) { --i: 5; }
-        .skill-bubble:nth-child(6) { --i: 6; }
-        .skill-bubble:nth-child(7) { --i: 7; }
-        .skill-bubble:nth-child(8) { --i: 8; }
-        .skill-bubble:nth-child(9) { --i: 9; }
-        .skill-bubble:nth-child(10) { --i: 10; }
-        .skill-bubble:nth-child(n+11) { --i: 11; }
-        .skill-bubble:nth-child(n+21) { --i: 12; }
-        .skill-bubble:nth-child(n+31) { --i: 13; }
-        .skill-bubble:nth-child(n+41) { --i: 14; }
-
-        @keyframes floatIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px) scale(0.8);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .skill-bubble:hover {
-            transform: translateY(-5px) scale(1.1);
-            background: hsla(var(--hue), 70%, 50%, 0.25);
-            border-color: hsla(var(--hue), 70%, 50%, 0.6);
-            box-shadow: 0 10px 30px hsla(var(--hue), 70%, 50%, 0.3),
-                        0 0 20px hsla(var(--hue), 70%, 50%, 0.2);
-            z-index: 10;
-        }
-
-        .skill-bubble.large {
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        .skill-bubble.xl {
-            padding: 0.9rem 1.8rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            background: hsla(var(--hue), 70%, 50%, 0.15);
-        }
-
-        .skill-bubble:active {
-            transform: scale(0.95);
-        }
-
-        /* Random subtle floating animation on some bubbles */
-        .skill-bubble:nth-child(3n) {
-            animation: floatIn 0.6s ease backwards, gentleFloat 4s ease-in-out infinite;
-            animation-delay: calc(var(--i, 0) * 0.05s), 0s;
-        }
-
-        .skill-bubble:nth-child(5n) {
-            animation: floatIn 0.6s ease backwards, gentleFloat 5s ease-in-out infinite reverse;
-            animation-delay: calc(var(--i, 0) * 0.05s), 0.5s;
-        }
-
-        @keyframes gentleFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        /* Skills Section */
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .skill-pill {
-            background: var(--bg-elevated);
-            border: 1px solid var(--border);
-            padding: 0.75rem 1.5rem;
-            border-radius: 100px;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .skill-pill:hover {
-            background: var(--accent-soft);
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        /* Contact Section */
-        .contact-section {
-            text-align: center;
-            padding: 10rem 0;
-        }
-
-        .contact-title {
-            font-family: 'Instrument Serif', serif;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 400;
-            margin-bottom: 2rem;
-        }
-
-        .contact-title em {
-            font-style: italic;
-            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-link {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .contact-link:hover {
-            color: var(--accent);
-        }
-
-        /* Footer */
-        footer {
-            padding: 2rem 0;
+            margin-top: auto;
+            padding-top: 1.6rem;
             border-top: 1px solid var(--border);
-            text-align: center;
         }
+        .highlight-number { font-family: var(--serif); font-size: 2rem; line-height: 1.1; }
+        .highlight-label { font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; }
+        .open-hint {
+            position: absolute;
+            top: 2.2rem;
+            right: 2.2rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: var(--on-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transform: scale(0) rotate(-45deg);
+            transition: transform 0.5s var(--ease);
+        }
+        .featured:hover .open-hint { transform: scale(1) rotate(0); }
+        .featured:hover .featured-year { opacity: 0; }
 
-        footer p {
-            color: var(--text-muted);
+        .filter-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-bottom: 2rem; }
+        .filter-bar .label { color: var(--text-dim); font-size: 0.85rem; margin-right: 0.6rem; }
+        .chip-btn {
+            background: none;
+            border: 1px solid var(--border-strong);
+            border-radius: 999px;
+            padding: 0.45rem 1rem;
             font-size: 0.85rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s, border-color 0.3s;
         }
+        .chip-btn:hover { color: var(--text); border-color: var(--text); }
+        .chip-btn.active { background: var(--text); color: var(--bg); border-color: var(--text); }
+        .chip-btn .count { opacity: 0.55; margin-left: 0.3rem; font-size: 0.75rem; }
+        .tech-filter-note { display: none; align-items: center; gap: 0.6rem; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.4rem; }
+        .tech-filter-note.show { display: flex; }
+        .tech-filter-note b { color: var(--accent); font-weight: 500; }
+        .tech-filter-note button { background: none; border: none; color: var(--text); text-decoration: underline; cursor: pointer; font-size: 0.85rem; }
+
+        .project-list { border-top: 1px solid var(--border); }
+        .project-row {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 60px 1fr 220px 140px 40px;
+            gap: 1.5rem;
+            align-items: center;
+            padding: 2rem 0;
+            border: none;
+            border-bottom: 1px solid var(--border);
+            background: none;
+            text-align: left;
+            cursor: pointer;
+            position: relative;
+            isolation: isolate;
+        }
+        .project-row::before {
+            content: '';
+            position: absolute;
+            inset: 0 -2rem;
+            background: var(--bg-elevated);
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 0.5s var(--ease);
+            z-index: -1;
+        }
+        .project-row:hover::before, .project-row:focus-visible::before { transform: scaleY(1); }
+        .project-row.hidden { display: none; }
+        .row-num { font-family: var(--serif); font-style: italic; color: var(--text-dim); font-size: 1.05rem; }
+        .row-title { font-family: var(--serif); font-size: clamp(1.4rem, 2.6vw, 2rem); line-height: 1.15; transition: transform 0.5s var(--ease); }
+        .project-row:hover .row-title { transform: translateX(10px); }
+        .row-org { color: var(--text-muted); font-size: 0.9rem; }
+        .row-year { color: var(--text-dim); font-size: 0.9rem; text-align: right; }
+        .row-arrow {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--border-strong);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s, border-color 0.3s, color 0.3s, transform 0.5s var(--ease);
+        }
+        .project-row:hover .row-arrow { background: var(--accent); border-color: var(--accent); color: var(--on-accent); transform: rotate(-45deg); }
+        .row-new { font-family: var(--sans); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); vertical-align: middle; margin-left: 0.6rem; border: 1px solid rgba(var(--accent-rgb), 0.4); padding: 0.15rem 0.5rem; border-radius: 999px; white-space: nowrap; }
+
+        /* Drawer */
+        .drawer-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(var(--shade-rgb), 0.6);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s var(--ease);
+            z-index: 300;
+        }
+        .drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: min(760px, 100vw);
+            background: var(--bg-elevated);
+            border-left: 1px solid var(--border);
+            transform: translateX(100%);
+            visibility: hidden;
+            transition: transform 0.7s var(--ease), visibility 0s linear 0.7s;
+            z-index: 301;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+        }
+        .drawer-open .drawer-backdrop { opacity: 1; pointer-events: auto; }
+        .drawer-open .drawer { transform: none; visibility: visible; transition: transform 0.7s var(--ease); }
+        .drawer-bar {
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2.6rem;
+            background: rgba(var(--bg-elev-rgb), 0.92);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 2;
+        }
+        .drawer-bar span { color: var(--text-dim); font-size: 0.85rem; }
+        .drawer-nav { display: flex; gap: 0.5rem; }
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--border-strong);
+            background: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s, color 0.3s, border-color 0.3s;
+        }
+        .icon-btn:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
+        .drawer-content { padding: 3rem 2.6rem 5rem; }
+        .d-org { color: var(--accent); margin-bottom: 0.6rem; }
+        .d-title { font-family: var(--serif); font-weight: 400; font-size: clamp(2.1rem, 4.5vw, 3.2rem); line-height: 1.05; margin-bottom: 1.6rem; }
+        .d-summary { color: var(--text-muted); font-size: 1.08rem; margin-bottom: 2.2rem; }
+        .d-summary strong { color: var(--text); font-weight: 500; }
+        .d-details { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; padding: 1.6rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
+        .detail-label { display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 0.3rem; }
+        .detail-value { font-size: 0.95rem; }
+        .d-tech { margin-bottom: 3rem; }
+        .d-tech .chip-btn { font-size: 0.8rem; padding: 0.35rem 0.85rem; }
+        .d-section { margin-bottom: 2.6rem; }
+        .d-section h4 {
+            font-family: var(--serif);
+            font-style: italic;
+            font-weight: 400;
+            font-size: 1.6rem;
+            margin-bottom: 0.9rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.8rem;
+        }
+        .d-section h4 small { font-family: var(--sans); font-style: normal; font-size: 0.75rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; }
+        .d-section p { color: var(--text-muted); margin-bottom: 0.8rem; }
+        .d-section ul { list-style: none; display: grid; gap: 0.75rem; }
+        .d-section li { color: var(--text-muted); padding-left: 1.4rem; position: relative; }
+        .d-section li::before { content: ''; position: absolute; left: 0; top: 0.75em; width: 7px; height: 1px; background: var(--accent); }
+        .d-section strong { color: var(--text); font-weight: 500; }
+        .d-section code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.82em; background: rgba(var(--text-rgb), 0.07); padding: 0.1rem 0.4rem; border-radius: 4px; color: var(--text); }
+        .deep-divider { display: flex; align-items: center; gap: 1rem; margin: 0 0 2.6rem; color: var(--text-dim); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.14em; }
+        .deep-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+        /* Interactive pipeline (SUFRAMA) */
+        .mode-switch { display: inline-flex; border: 1px solid var(--border-strong); border-radius: 999px; padding: 4px; margin-bottom: 1.4rem; position: relative; }
+        .mode-switch button { position: relative; z-index: 1; background: none; border: none; padding: 0.5rem 1.2rem; font-size: 0.88rem; cursor: pointer; color: var(--text-muted); transition: color 0.3s; }
+        .mode-switch button.on { color: var(--bg); }
+        .mode-pill { position: absolute; top: 4px; bottom: 4px; left: 4px; border-radius: 999px; background: var(--text); transition: transform 0.5s var(--ease), width 0.5s var(--ease); }
+        .stages { display: grid; gap: 0.5rem; margin-bottom: 1.8rem; }
+        .stage {
+            display: grid;
+            grid-template-columns: 28px 1fr;
+            gap: 0.8rem;
+            align-items: start;
+            padding: 0.9rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: var(--bg-card);
+            transition: opacity 0.5s var(--ease), border-color 0.5s, transform 0.5s var(--ease);
+        }
+        .stage .s-n { font-family: var(--serif); font-style: italic; color: var(--text-dim); }
+        .stage b { font-weight: 500; display: block; }
+        .stage span { color: var(--text-muted); font-size: 0.88rem; }
+        .stage.graph { border-color: rgba(var(--accent-rgb), 0.35); }
+        .stage.graph .s-n { color: var(--accent); }
+        .mode-rag .stage.graph { opacity: 0.25; transform: scale(0.98); border-color: var(--border); }
+        .bars { display: grid; gap: 0.9rem; }
+        .bar-row { display: grid; grid-template-columns: 150px 1fr 48px; gap: 1rem; align-items: center; font-size: 0.9rem; }
+        .bar-row > span:first-child { color: var(--text-muted); }
+        .bar { height: 8px; border-radius: 99px; background: rgba(var(--text-rgb), 0.07); overflow: hidden; }
+        .bar i { display: block; height: 100%; border-radius: 99px; background: var(--text); width: 0; transition: width 0.9s var(--ease), background 0.4s; }
+        .mode-graph .bar i { background: var(--accent); }
+        .bar-val { text-align: right; font-variant-numeric: tabular-nums; }
+        .bars-note { color: var(--text-dim); font-size: 0.82rem; margin-top: 1rem; }
+
+        /* Certifications & education */
+        .cred-grid { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 4rem; }
+        .cred-col h3 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-dim); font-weight: 500; margin-bottom: 1rem; }
+        .cert-list { border-top: 1px solid var(--border); }
+        .cert-row {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            align-items: baseline;
+            padding: 1.3rem 0;
+            border-bottom: 1px solid var(--border);
+            transition: padding 0.5s var(--ease);
+        }
+        .cert-row:hover { padding-left: 0.8rem; }
+        a.cert-row { text-decoration: none; color: inherit; }
+        .cert-note { word-break: break-word; }
+        .cert-name { font-family: var(--serif); font-size: 1.45rem; line-height: 1.2; }
+        .cert-issuer { color: var(--text-muted); font-size: 0.9rem; }
+        .cert-note { color: var(--text-dim); font-size: 0.85rem; margin-top: 0.2rem; max-width: 560px; }
+        .cert-date { color: var(--text-dim); font-size: 0.85rem; white-space: nowrap; }
+        .cert-row.top .cert-name::after { content: '✦'; color: var(--accent); font-size: 0.85rem; margin-left: 0.5rem; vertical-align: middle; }
+        .edu-item { padding: 1.3rem 0; border-bottom: 1px solid var(--border); }
+        .edu-item:first-of-type { border-top: 1px solid var(--border); }
+        .edu-degree { font-family: var(--serif); font-size: 1.35rem; line-height: 1.2; }
+        .edu-school { color: var(--text-muted); font-size: 0.9rem; }
+        .edu-date { color: var(--text-dim); font-size: 0.85rem; }
+        .lang-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+
+        /* Soft skills */
+        .soft-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            overflow: hidden;
+        }
+        .soft-card {
+            background: var(--bg);
+            padding: 2rem 1.6rem 2.2rem;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.5s var(--ease);
+        }
+        .soft-card::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 2px;
+            width: 100%;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s var(--ease);
+        }
+        .soft-card:hover { background: var(--bg-card); }
+        .soft-card:hover::after { transform: scaleX(1); }
+        .soft-num { font-family: var(--serif); font-style: italic; color: var(--text-dim); padding-bottom: 2.6rem; transition: color 0.4s; }
+        .soft-card:hover .soft-num { color: var(--accent); }
+        .soft-card h3 { font-family: var(--serif); font-weight: 400; font-size: 1.55rem; line-height: 1.15; margin-bottom: 0.7rem; }
+        .soft-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.55; }
+
+        /* Skills map */
+        .skills-section { background: var(--bg-elevated); }
+        .skills-intro { color: var(--text-muted); margin: -1.6rem 0 2rem; max-width: 620px; }
+        .map-toolbar { display: flex; flex-wrap: wrap; gap: 0.8rem; align-items: center; justify-content: space-between; margin-bottom: 1.4rem; }
+        .map-search {
+            flex: 1 1 260px;
+            max-width: 360px;
+            background: var(--bg);
+            border: 1px solid var(--border-strong);
+            border-radius: 999px;
+            padding: 0.7rem 1.2rem;
+            font: inherit;
+            font-size: 0.92rem;
+            color: var(--text);
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .map-search:focus { border-color: var(--accent); }
+        .map-search::placeholder { color: var(--text-dim); }
+        .view-switch { display: inline-flex; border: 1px solid var(--border-strong); border-radius: 999px; padding: 4px; }
+        .view-switch button { background: none; border: none; border-radius: 999px; padding: 0.45rem 1.1rem; font-size: 0.85rem; cursor: pointer; color: var(--text-muted); transition: background 0.3s, color 0.3s; }
+        .view-switch button.on { background: var(--text); color: var(--bg); }
+        .map-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 300px;
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            background: var(--bg);
+            overflow: hidden;
+        }
+        .map-canvas-wrap { position: relative; height: 720px; }
+        #skillMap { width: 100%; height: 100%; display: block; touch-action: none; }
+        .map-panel { border-left: 1px solid var(--border); padding: 1.8rem 1.6rem; display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+        .map-panel .mp-kicker { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); }
+        .map-panel .mp-title { font-family: var(--serif); font-size: 2rem; line-height: 1.05; }
+        .map-panel .mp-text { color: var(--text-muted); font-size: 0.92rem; }
+        .map-panel .mp-projects { display: grid; gap: 0.5rem; }
+        .mp-project {
+            text-align: left;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.75rem 0.9rem;
+            font-size: 0.88rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            gap: 0.6rem;
+            transition: border-color 0.3s;
+        }
+        .mp-project:hover { border-color: var(--accent); }
+        .mp-project span:last-child { color: var(--accent); }
+        .map-legend { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.78rem; color: var(--text-dim); }
+        .map-legend i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 0.4rem; vertical-align: 0; }
+        .skills-list[hidden], .map-layout[hidden] { display: none; }
+        .skill-groups { display: grid; gap: 2.4rem; }
+        .skill-group { display: grid; grid-template-columns: 220px 1fr; gap: 2rem; align-items: start; padding-top: 2.4rem; border-top: 1px solid var(--border); }
+        .skill-group h3 { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 1.5rem; line-height: 1.2; }
+        .skills-cloud { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+        .skill-bubble {
+            padding: 0.6rem 1.15rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.92rem;
+            transition: border-color 0.3s, color 0.3s, transform 0.4s var(--ease);
+        }
+        button.skill-bubble { cursor: pointer; }
+        button.skill-bubble:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
+        button.skill-bubble sup { color: var(--accent); font-size: 0.65rem; margin-left: 0.25rem; }
+
+        /* Contact */
+        .contact-section { text-align: center; padding: 6.5rem 0 5.5rem; }
+        .contact-title {
+            font-family: var(--serif);
+            font-size: clamp(3rem, 9vw, 7rem);
+            font-weight: 400;
+            line-height: 1;
+            margin-bottom: 2rem;
+        }
+        .contact-title em { background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; padding-right: 0.06em; }
+        .contact-sub { color: var(--text-muted); margin-bottom: 3rem; }
+        .email-big {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 1rem;
+            font-family: var(--serif);
+            font-size: clamp(1.4rem, 4vw, 2.4rem);
+            background: none;
+            border: none;
+            border-bottom: 1px solid var(--border-strong);
+            padding-bottom: 0.4rem;
+            margin-bottom: 3rem;
+            cursor: pointer;
+            transition: border-color 0.3s, color 0.3s, opacity 0.9s var(--ease), transform 0.9s var(--ease);
+        }
+        .email-big:hover { color: var(--accent); border-color: var(--accent); }
+        .email-big small { font-family: var(--sans); font-size: 0.8rem; color: var(--text-dim); }
+        .contact-links { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+
+        footer { padding: 2.4rem 0; border-top: 1px solid var(--border); }
+        .footer-inner { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.4rem; color: var(--text-dim); font-size: 0.85rem; }
+        .footer-inner b { color: var(--text-muted); font-weight: 500; }
+
+        /* Command palette */
+        .palette-wrap {
+            position: fixed;
+            inset: 0;
+            z-index: 500;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 14vh 16px 16px;
+            background: rgba(var(--shade-rgb), 0.55);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .palette-wrap.open { opacity: 1; pointer-events: auto; }
+        .palette {
+            width: min(560px, 100%);
+            background: var(--bg-card);
+            border: 1px solid var(--border-strong);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 30px 90px rgba(var(--shade-rgb), 0.45);
+            transform: translateY(-10px) scale(0.98);
+            transition: transform 0.4s var(--ease);
+        }
+        .palette-wrap.open .palette { transform: none; }
+        .palette input {
+            width: 100%;
+            background: none;
+            border: none;
+            border-bottom: 1px solid var(--border);
+            padding: 1.2rem 1.4rem;
+            font: inherit;
+            font-size: 1.05rem;
+            color: var(--text);
+            outline: none;
+        }
+        .palette input::placeholder { color: var(--text-dim); }
+        .palette ul { list-style: none; max-height: 340px; overflow-y: auto; padding: 0.5rem; }
+        .palette li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 0.9rem;
+            border-radius: 10px;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+        .palette li.sel { background: rgba(var(--text-rgb), 0.07); color: var(--text); }
+        .palette li small { color: var(--text-dim); font-size: 0.78rem; }
+        .palette-foot { padding: 0.7rem 1.4rem; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 0.75rem; display: flex; gap: 1.2rem; }
+
+        .toast {
+            position: fixed;
+            bottom: 28px;
+            left: 50%;
+            transform: translate(-50%, 20px);
+            background: var(--text);
+            color: var(--bg);
+            padding: 0.7rem 1.3rem;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s, transform 0.4s var(--ease);
+            z-index: 600;
+        }
+        .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
         /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-grid { grid-template-columns: 1fr; }
+            .graph-wrap { height: 400px; }
+            .featured-grid { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .project-row { grid-template-columns: 44px 1fr 120px 40px; }
+            .row-org { display: none; }
+            .cred-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .soft-grid { grid-template-columns: repeat(2, 1fr); }
+            .map-layout { grid-template-columns: 1fr; }
+            .map-panel { border-left: none; border-top: 1px solid var(--border); min-height: 220px; }
+        }
+
         @media (max-width: 768px) {
+            .container { padding: 0 16px; }
+            nav, nav.scrolled { padding: 0.9rem 16px; }
+            .menu-btn { display: inline-flex; }
+            .kbd-btn { display: none; }
             .nav-links {
-                display: none;
-            }
-
-            .hero-stats {
+                position: fixed;
+                top: 64px;
+                left: 0;
+                right: 0;
                 flex-direction: column;
-                gap: 2rem;
+                gap: 0;
+                padding: 0.5rem 16px 1.2rem;
+                background: rgba(var(--bg-rgb), 0.97);
+                border-bottom: 1px solid var(--border);
+                transform: translateY(-8px);
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s, transform 0.4s var(--ease);
             }
-
-            .experience-item {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .project-card:nth-child(1) {
-                grid-column: span 1;
-            }
-
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
+            .nav-links.open { opacity: 1; transform: none; pointer-events: auto; }
+            .nav-links a { padding: 0.9rem 0; font-size: 1.1rem; border-bottom: 1px solid var(--border); }
+            .nav-links a::after { display: none; }
+            section { padding: 3.8rem 0; }
+            .section-title { margin-bottom: 2rem; }
+            .hero { padding: 7rem 0 3rem; }
+            .hero-stats { gap: 1.6rem 2.2rem; }
+            .stat-number { font-size: 2.1rem; }
+            .graph-wrap { height: 340px; }
+            .graph-hint { left: 0; text-align: center; }
+            .services-grid { grid-template-columns: 1fr; }
+            .service-card { padding: 2rem 1.4rem; }
+            .service-num { margin-bottom: 1.2rem; }
+            .exp-head { grid-template-columns: 1fr auto; gap: 0.4rem 1rem; padding: 1.8rem 0; }
+            .exp-date { grid-column: 1 / -1; }
+            .exp-inner { padding: 0 0 2rem; }
+            .featured { padding: 1.8rem 1.4rem; }
+            .open-hint { display: none; }
+            .featured-highlights { grid-template-columns: 1fr 1fr; }
+            .project-row { grid-template-columns: 1fr 40px; gap: 0.3rem 1rem; padding: 1.5rem 0; }
+            .project-row::before { inset: 0 -16px; }
+            .row-num { display: none; }
+            .row-year { grid-column: 1; grid-row: 2; text-align: left; }
+            .row-arrow { grid-column: 2; grid-row: 1 / span 2; }
+            .drawer-bar { padding: 1rem 16px; }
+            .drawer-content { padding: 2rem 16px 4rem; }
+            .d-details { grid-template-columns: 1fr; }
+            .bar-row { grid-template-columns: 110px 1fr 40px; gap: 0.6rem; font-size: 0.82rem; }
+            .skill-group { grid-template-columns: 1fr; gap: 1rem; }
+            .soft-grid { grid-template-columns: 1fr; }
+            .soft-card { min-height: 0; }
+            .soft-num { padding-bottom: 1rem; }
+            .map-canvas-wrap { height: 560px; }
+            .map-search { max-width: none; }
+            .cert-row { grid-template-columns: 1fr; gap: 0.2rem; }
+            .contact-section { padding: 4.5rem 0; }
+            .email-big { font-size: 1.25rem; flex-wrap: wrap; justify-content: center; gap: 0.4rem; }
         }
 
-        /* Scroll animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s ease;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { animation-duration: 0.001ms !important; animation-delay: 0ms !important; transition-duration: 0.001ms !important; }
+            .reveal { opacity: 1; transform: none; }
+            .orb, .stars, .marquee-track { animation: none; }
         }
     </style>
 </head>
 <body>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"><span id="cursorLabel">view</span></div>
+
     <!-- Navigation -->
-    <nav>
-        <a href="#" class="logo">mlp.</a>
-        <div class="nav-links">
-            <a href="#services">What I Do</a>
-            <a href="#experience">Experience</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
+    <nav id="nav">
+        <a href="#top" class="logo">mlp<span>.</span></a>
+        <div class="nav-right">
+            <div class="nav-links" id="navLinks">
+                <a href="#services">What I Do</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#credentials">Certifications</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="theme-btn" id="themeBtn" aria-label="Switch to light mode" title="Switch theme">
+                <svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
+                <svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg>
+            </button>
+            <button class="kbd-btn" id="paletteBtn" aria-label="Open quick navigation"><kbd>⌘K</kbd> quick nav</button>
+            <button class="menu-btn" id="menuBtn" aria-expanded="false">Menu</button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Hero -->
+    <section class="hero" id="top">
+        <div class="stars"></div>
         <div class="orb orb-1"></div>
         <div class="orb orb-2"></div>
-        <div class="container">
+        <div class="container hero-grid">
             <div class="hero-content">
                 <span class="hero-label">Available for projects</span>
-                <h1>I build <em>intelligent systems</em> that transform how businesses operate.</h1>
-                <p class="hero-description">Data Scientist & AI Solutions Engineer specializing in LLMs, autonomous agents, and production-grade machine learning systems. Turning complex data into actionable intelligence.</p>
+                <h1 id="heroTitle">I build <em>intelligent systems</em> that transform how businesses operate.</h1>
+                <p class="hero-description">Data Scientist &amp; AI Solutions Engineer specializing in LLMs, autonomous agents, and production-grade machine learning systems. Turning complex data into actionable intelligence.</p>
+                <div class="hero-ctas">
+                    <a href="#projects" class="btn solid magnetic">See my work <span>→</span></a>
+                    <a href="#contact" class="btn magnetic">Let's talk</a>
+                </div>
                 <div class="hero-stats">
                     <div class="stat">
-                        <div class="stat-number">3+</div>
-                        <div class="stat-label">Years in AI & ML</div>
+                        <div class="stat-number" data-count="5" data-suffix="+">5+</div>
+                        <div class="stat-label">Years in AI &amp; ML</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-number">20+</div>
+                        <div class="stat-number" data-count="20" data-suffix="+">20+</div>
                         <div class="stat-label">Projects Delivered</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number" data-count="7">7</div>
+                        <div class="stat-label">Certifications</div>
                     </div>
                     <div class="stat">
                         <div class="stat-number">∞</div>
@@ -914,42 +1189,51 @@
                     </div>
                 </div>
             </div>
+            <div class="graph-wrap" aria-label="Interactive map of the technologies I work with">
+                <canvas id="kg"></canvas>
+                <div class="graph-hint"><b>drag</b> the nodes · <b>click</b> a tool to see where I used it</div>
+            </div>
         </div>
     </section>
 
-    <!-- What I Do Section -->
+    <!-- Rolling tagline -->
+    <a href="#contact" class="marquee" aria-label="Open to work — get in touch" data-cursor="say hi">
+        <div class="marquee-track" id="marquee" aria-hidden="true"></div>
+    </a>
+
+    <!-- What I Do -->
     <section id="services">
         <div class="container">
             <span class="section-label">Expertise</span>
             <h2 class="section-title reveal">Things <em>I do</em></h2>
             <div class="services-grid">
                 <div class="service-card reveal">
-                    <div class="service-icon">🤖</div>
+                    <span class="service-num">01</span>
                     <h3>LLM-Powered Agents</h3>
                     <p>Design and deploy autonomous AI agents for workflow automation, enterprise decision-support, and complex multi-step reasoning tasks.</p>
                 </div>
                 <div class="service-card reveal">
-                    <div class="service-icon">🧠</div>
-                    <h3>NLP & ML Pipelines</h3>
+                    <span class="service-num">02</span>
+                    <h3>NLP &amp; ML Pipelines</h3>
                     <p>End-to-end development of intent classification, ranking systems, and sentiment analysis using BERT, RoBERTa, and ensemble architectures.</p>
                 </div>
                 <div class="service-card reveal">
-                    <div class="service-icon">🔍</div>
-                    <h3>RAG Systems & GraphRAG</h3>
+                    <span class="service-num">03</span>
+                    <h3>RAG Systems &amp; GraphRAG</h3>
                     <p>Production-grade Retrieval-Augmented Generation systems. From vector databases to knowledge graphs, building scalable solutions for enterprise environments.</p>
                 </div>
                 <div class="service-card reveal">
-                    <div class="service-icon">📊</div>
-                    <h3>Predictive Modeling & Analytics</h3>
+                    <span class="service-num">04</span>
+                    <h3>Predictive Modeling &amp; Analytics</h3>
                     <p>Statistical modeling, forecasting, and advanced analytics for business decision-making. From customer churn prediction to financial time-series analysis.</p>
                 </div>
                 <div class="service-card reveal">
-                    <div class="service-icon">🔗</div>
+                    <span class="service-num">05</span>
                     <h3>Graph Neural Networks</h3>
                     <p>Topology-aware predictive models for complex network analysis, resilience assessment, and vulnerability detection in critical systems.</p>
                 </div>
                 <div class="service-card reveal">
-                    <div class="service-icon">💬</div>
+                    <span class="service-num">06</span>
                     <h3>Conversational AI</h3>
                     <p>Digital banking assistants, chatbot optimization, and customer retention analysis through advanced NLP techniques.</p>
                 </div>
@@ -957,425 +1241,1168 @@
         </div>
     </section>
 
-    <!-- Experience Section -->
+    <!-- Experience -->
     <section id="experience" style="background: var(--bg-elevated);">
         <div class="container">
             <span class="section-label">Career</span>
             <h2 class="section-title reveal">Where I've <em>worked</em></h2>
-            <div class="experience-list">
-                <div class="experience-item reveal">
-                    <div class="experience-date">Jan 2025 – Present</div>
-                    <div class="experience-content">
-                        <h3>AI Solutions Engineer</h3>
-                        <div class="experience-company">Intelliway Tecnologia</div>
-                        <p class="experience-description">Developing autonomous AI agents powered by LLMs for workflow automation. Designing secure on-premise AI architectures and integrating systems with REST APIs and unstructured data sources.</p>
-                        <div class="experience-tags">
-                            <span class="tag">LLM Agents</span>
-                            <span class="tag">API Integration</span>
-                            <span class="tag">Enterprise AI</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="experience-item reveal">
-                    <div class="experience-date">Aug 2024 – Jun 2025</div>
-                    <div class="experience-content">
-                        <h3>Data Scientist ML/NLP</h3>
-                        <div class="experience-company">NTT DATA Europe & Latam</div>
-                        <p class="experience-description">Led NLP and ML pipeline enhancements for digital banking assistants at Itaú Bank. Built classification and ranking systems processing 1M+ customer interactions monthly using BERT, XGBoost, and ensemble architectures.</p>
-                        <div class="experience-tags">
-                            <span class="tag">BERT</span>
-                            <span class="tag">XGBoost</span>
-                            <span class="tag">NLP</span>
-                            <span class="tag">Banking</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="experience-item reveal">
-                    <div class="experience-date">Dec 2022 – Dec 2024</div>
-                    <div class="experience-content">
-                        <h3>Scientific Researcher & ML Developer</h3>
-                        <div class="experience-company">LabTel – UFES</div>
-                        <p class="experience-description">Applied research in machine learning and complex networks for Smart Grid resilience. Developed Graph Neural Networks for power system vulnerability analysis and implemented optimization algorithms for critical infrastructure.</p>
-                        <div class="experience-tags">
-                            <span class="tag">GNN</span>
-                            <span class="tag">Smart Grid</span>
-                            <span class="tag">Julia</span>
-                            <span class="tag">Research</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="experience-list" id="experienceList"></div>
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- Projects -->
     <section id="projects">
         <div class="container">
             <span class="section-label">Portfolio</span>
             <h2 class="section-title reveal">Selected <em>projects</em></h2>
-            
-            <!-- Featured Project -->
-            <div class="featured-project reveal">
-                <div class="featured-project-header">
-                    <div class="featured-badge">Featured Project</div>
-                    <div class="featured-year">2024</div>
-                </div>
-                <div class="featured-project-content">
-                    <h3>Digital Banking Virtual Assistant Optimization</h3>
-                    <p class="featured-subtitle">Itaú Bank — NTT DATA</p>
-                    <p class="featured-description">Led the complete overhaul of NLP pipelines for one of Latin America's largest digital banking assistants. The system processes over <strong>1 million customer interactions monthly</strong>, handling intent classification, sentiment analysis, and escalation risk detection in real-time.</p>
-                    <div class="featured-highlights">
-                        <div class="highlight-item">
-                            <div class="highlight-number">1M+</div>
-                            <div class="highlight-label">Monthly interactions processed</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-number">40%</div>
-                            <div class="highlight-label">Improvement in escalation prediction</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-number">BERT</div>
-                            <div class="highlight-label">Fine-tuned for Portuguese banking</div>
-                        </div>
-                    </div>
-                    <div class="featured-tech">
-                        <span>BERT Fine-tuning</span>
-                        <span>RoBERTa</span>
-                        <span>XGBoost</span>
-                        <span>Ensemble Learning</span>
-                        <span>Sentiment Analysis</span>
-                        <span>Learning-to-Rank</span>
-                    </div>
-                </div>
+
+            <div class="featured-grid" id="featuredGrid"></div>
+
+            <div class="filter-bar reveal" id="filterBar" role="toolbar" aria-label="Filter projects">
+                <span class="label">Filter</span>
             </div>
-
-            <!-- Project Cards Grid -->
-            <div class="projects-list">
-                <div class="project-item reveal">
-                    <div class="project-item-number">01</div>
-                    <div class="project-item-content">
-                        <div class="project-item-header">
-                            <h3>LLM Fine-tuning for Domain-Specific Applications</h3>
-                            <span class="project-item-year">2024 – Present</span>
-                        </div>
-                        <p>Specialized in adapting large language models (GPT, BERT, T5) for enterprise use cases through fine-tuning with domain-specific datasets. This includes experimental comparison of training architectures, preprocessing techniques optimization, and preparation of large-scale textual datasets. Developed custom evaluation frameworks to measure model performance on specific business metrics rather than generic benchmarks.</p>
-                        <div class="project-item-details">
-                            <div class="detail-block">
-                                <span class="detail-label">Key Techniques</span>
-                                <span class="detail-value">LoRA, QLoRA, Full Fine-tuning, Prompt Engineering</span>
-                            </div>
-                            <div class="detail-block">
-                                <span class="detail-label">Models</span>
-                                <span class="detail-value">GPT, BERT, T5, LLaMA, Mistral</span>
-                            </div>
-                        </div>
-                        <div class="project-item-tags">
-                            <span>LLM Fine-tuning</span>
-                            <span>Hugging Face</span>
-                            <span>PyTorch</span>
-                            <span>Dataset Curation</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-item reveal">
-                    <div class="project-item-number">02</div>
-                    <div class="project-item-content">
-                        <div class="project-item-header">
-                            <h3>Autonomous AI Agents for Enterprise Automation</h3>
-                            <span class="project-item-year">2025</span>
-                        </div>
-                        <p>Architected and deployed autonomous AI agents powered by Large Language Models for complex workflow automation. These agents handle multi-step reasoning tasks, integrate with heterogeneous REST APIs, and process unstructured data from multiple sources. Built secure on-premise deployment pipelines for enterprise clients with strict data governance requirements, ensuring LGPD compliance throughout.</p>
-                        <div class="project-item-details">
-                            <div class="detail-block">
-                                <span class="detail-label">Architecture</span>
-                                <span class="detail-value">RAG, ReAct Agents, Tool Orchestration</span>
-                            </div>
-                            <div class="detail-block">
-                                <span class="detail-label">Deployment</span>
-                                <span class="detail-value">On-premise, Docker, Kubernetes</span>
-                            </div>
-                        </div>
-                        <div class="project-item-tags">
-                            <span>LangChain</span>
-                            <span>LlamaIndex</span>
-                            <span>Neo4j</span>
-                            <span>Qdrant</span>
-                            <span>FastAPI</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-item reveal">
-                    <div class="project-item-number">03</div>
-                    <div class="project-item-content">
-                        <div class="project-item-header">
-                            <h3>Smart Grid Resilience Modeling with Graph Neural Networks</h3>
-                            <span class="project-item-year">2022 – 2024</span>
-                        </div>
-                        <p>Conducted applied research at LabTel/UFES developing Graph Neural Networks to model power system resilience and vulnerability propagation in Brazil's energy transmission network. Created topology-aware predictive models for failure detection and ranking, enabling proactive maintenance strategies. Applied Differential Evolution optimization algorithms to improve transmission line risk assessments for critical infrastructure protection.</p>
-                        <div class="project-item-details">
-                            <div class="detail-block">
-                                <span class="detail-label">Impact</span>
-                                <span class="detail-value">Risk management for national power grid</span>
-                            </div>
-                            <div class="detail-block">
-                                <span class="detail-label">Methods</span>
-                                <span class="detail-value">GNN, Differential Evolution, Graph Theory</span>
-                            </div>
-                        </div>
-                        <div class="project-item-tags">
-                            <span>Graph Neural Networks</span>
-                            <span>Python</span>
-                            <span>Julia</span>
-                            <span>Complex Networks</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-item reveal">
-                    <div class="project-item-number">04</div>
-                    <div class="project-item-content">
-                        <div class="project-item-header">
-                            <h3>Customer Churn Prediction & Retention Analytics</h3>
-                            <span class="project-item-year">2024</span>
-                        </div>
-                        <p>Developed a comprehensive customer risk scoring system for digital banking that identifies high-risk interactions before they escalate to human agents. Built ranking algorithms combining NLP-based sentiment analysis with behavioral patterns to prioritize interventions. The recommendation mechanism increased digital service completion rates by surfacing personalized solutions at critical conversation moments.</p>
-                        <div class="project-item-details">
-                            <div class="detail-block">
-                                <span class="detail-label">Outcome</span>
-                                <span class="detail-value">Reduced escalation rates, improved CSAT</span>
-                            </div>
-                            <div class="detail-block">
-                                <span class="detail-label">Scale</span>
-                                <span class="detail-value">Real-time scoring on millions of conversations</span>
-                            </div>
-                        </div>
-                        <div class="project-item-tags">
-                            <span>XGBoost</span>
-                            <span>Random Forest</span>
-                            <span>NLP</span>
-                            <span>Ranking Models</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-item reveal">
-                    <div class="project-item-number">05</div>
-                    <div class="project-item-content">
-                        <div class="project-item-header">
-                            <h3>NVDA Stock Movement Forecasting</h3>
-                            <span class="project-item-year">2024</span>
-                        </div>
-                        <p>Built a deep learning model using LSTM networks to forecast NVIDIA stock price movements based on 8 years of historical data (2016-2024). Implemented feature importance ranking and sequence modeling techniques to identify the most predictive signals. The project explored time-series ranking algorithms to determine which historical patterns have the strongest predictive power for future price action.</p>
-                        <div class="project-item-details">
-                            <div class="detail-block">
-                                <span class="detail-label">Data</span>
-                                <span class="detail-value">8 years of NVDA price/volume data</span>
-                            </div>
-                            <div class="detail-block">
-                                <span class="detail-label">Architecture</span>
-                                <span class="detail-value">LSTM with attention mechanisms</span>
-                            </div>
-                        </div>
-                        <div class="project-item-tags">
-                            <span>TensorFlow</span>
-                            <span>Keras</span>
-                            <span>LSTM</span>
-                            <span>Time Series</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-item reveal">
-                    <div class="project-item-number">06</div>
-                    <div class="project-item-content">
-                        <div class="project-item-header">
-                            <h3>Monetary Policy Impact on Industrial Stocks</h3>
-                            <span class="project-item-year">2025</span>
-                        </div>
-                        <p>Conducting econometric analysis of how central bank interest rate decisions (Brazil's Selic and US Fed Funds Rate) affect Brazilian industrial stock performance on B3. Developing ranking models and performance scoring algorithms to identify which sectors show the strongest correlation with monetary policy shifts, providing quantitative insights for risk assessment and investment strategy formulation.</p>
-                        <div class="project-item-details">
-                            <div class="detail-block">
-                                <span class="detail-label">Focus</span>
-                                <span class="detail-value">B3 industrial sector analysis</span>
-                            </div>
-                            <div class="detail-block">
-                                <span class="detail-label">Methods</span>
-                                <span class="detail-value">Econometrics, Statistical Modeling, Correlation Analysis</span>
-                            </div>
-                        </div>
-                        <div class="project-item-tags">
-                            <span>Econometrics</span>
-                            <span>Python</span>
-                            <span>Statistical Modeling</span>
-                            <span>Finance</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-item reveal">
-                    <div class="project-item-number">07</div>
-                    <div class="project-item-content">
-                        <div class="project-item-header">
-                            <h3>Workforce Analytics & Mental Health Leave Prediction</h3>
-                            <span class="project-item-year">2024</span>
-                        </div>
-                        <p>Applied clustering and analytical modeling to understand employee absence patterns, with a focus on mental health leave analysis. Used unsupervised learning techniques (K-Means, DBSCAN, hierarchical clustering) to identify risk segments and inform HR policy decisions. The insights helped optimize resource allocation and develop proactive support programs for at-risk employee groups.</p>
-                        <div class="project-item-details">
-                            <div class="detail-block">
-                                <span class="detail-label">Techniques</span>
-                                <span class="detail-value">Clustering, Segmentation, Pattern Analysis</span>
-                            </div>
-                            <div class="detail-block">
-                                <span class="detail-label">Application</span>
-                                <span class="detail-value">HR Analytics, Workforce Planning</span>
-                            </div>
-                        </div>
-                        <div class="project-item-tags">
-                            <span>K-Means</span>
-                            <span>DBSCAN</span>
-                            <span>Scikit-learn</span>
-                            <span>HR Analytics</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="tech-filter-note" id="techNote">Showing projects that use <b id="techName"></b> <button id="techClear">clear</button></div>
+            <div class="project-list" id="projectList"></div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section class="skills-section" style="background: var(--bg-elevated);">
+    <!-- Soft skills -->
+    <section id="soft-skills" style="background: var(--bg-elevated);">
+        <div class="container">
+            <span class="section-label">Soft skills</span>
+            <h2 class="section-title reveal">How I <em>work</em></h2>
+            <div class="soft-grid reveal" id="softGrid"></div>
+        </div>
+    </section>
+
+    <!-- Skills map -->
+    <section class="skills-section" id="skills">
         <div class="container">
             <span class="section-label">Technical</span>
-            <h2 class="section-title reveal">Skills & <em>tools</em></h2>
-            <div class="skills-cloud reveal">
-                <span class="skill-bubble" style="--hue: 200;">🐍 Python</span>
-                <span class="skill-bubble" style="--hue: 280;">SQL</span>
-                <span class="skill-bubble" style="--hue: 320;">Julia</span>
-                <span class="skill-bubble" style="--hue: 50;">JavaScript</span>
-                <span class="skill-bubble" style="--hue: 180;">C#</span>
-                <span class="skill-bubble large" style="--hue: 25;">🔥 PyTorch</span>
-                <span class="skill-bubble" style="--hue: 35;">TensorFlow</span>
-                <span class="skill-bubble" style="--hue: 150;">Keras</span>
-                <span class="skill-bubble" style="--hue: 200;">Scikit-learn</span>
-                <span class="skill-bubble" style="--hue: 100;">XGBoost</span>
-                <span class="skill-bubble" style="--hue: 170;">LightGBM</span>
-                <span class="skill-bubble large" style="--hue: 280;">🤖 BERT</span>
-                <span class="skill-bubble" style="--hue: 300;">RoBERTa</span>
-                <span class="skill-bubble large" style="--hue: 160;">✨ GPT</span>
-                <span class="skill-bubble" style="--hue: 220;">T5</span>
-                <span class="skill-bubble large" style="--hue: 340;">🦙 LLaMA</span>
-                <span class="skill-bubble" style="--hue: 30;">Mistral</span>
-                <span class="skill-bubble" style="--hue: 45;">🤗 Hugging Face</span>
-                <span class="skill-bubble" style="--hue: 190;">spaCy</span>
-                <span class="skill-bubble" style="--hue: 260;">NLTK</span>
-                <span class="skill-bubble large" style="--hue: 120;">🦜 LangChain</span>
-                <span class="skill-bubble large" style="--hue: 270;">🦙 LlamaIndex</span>
-                <span class="skill-bubble xl" style="--hue: 180;">🔍 RAG</span>
-                <span class="skill-bubble xl" style="--hue: 300;">🕸️ GraphRAG</span>
-                <span class="skill-bubble" style="--hue: 60;">Prompt Engineering</span>
-                <span class="skill-bubble" style="--hue: 350;">Fine-tuning</span>
-                <span class="skill-bubble" style="--hue: 200;">LoRA</span>
-                <span class="skill-bubble" style="--hue: 240;">QLoRA</span>
-                <span class="skill-bubble large" style="--hue: 140;">🔗 Neo4j</span>
-                <span class="skill-bubble" style="--hue: 320;">Qdrant</span>
-                <span class="skill-bubble" style="--hue: 50;">Elasticsearch</span>
-                <span class="skill-bubble" style="--hue: 210;">FAISS</span>
-                <span class="skill-bubble" style="--hue: 280;">ChromaDB</span>
-                <span class="skill-bubble" style="--hue: 220;">🐘 PostgreSQL</span>
-                <span class="skill-bubble" style="--hue: 0;">Redis</span>
-                <span class="skill-bubble" style="--hue: 120;">MongoDB</span>
-                <span class="skill-bubble" style="--hue: 35;">☁️ AWS</span>
-                <span class="skill-bubble" style="--hue: 210;">Google Cloud</span>
-                <span class="skill-bubble" style="--hue: 230;">BigQuery</span>
-                <span class="skill-bubble" style="--hue: 200;">🐳 Docker</span>
-                <span class="skill-bubble" style="--hue: 230;">☸️ Kubernetes</span>
-                <span class="skill-bubble" style="--hue: 20;">Kafka</span>
-                <span class="skill-bubble" style="--hue: 170;">Airflow</span>
-                <span class="skill-bubble" style="--hue: 190;">MLflow</span>
-                <span class="skill-bubble" style="--hue: 150;">⚡ FastAPI</span>
-                <span class="skill-bubble" style="--hue: 270;">Graph Neural Networks</span>
-                <span class="skill-bubble" style="--hue: 330;">LSTM</span>
-                <span class="skill-bubble" style="--hue: 100;">📈 Time Series</span>
-                <span class="skill-bubble" style="--hue: 180;">Clustering</span>
-                <span class="skill-bubble" style="--hue: 290;">Learning-to-Rank</span>
-                <span class="skill-bubble" style="--hue: 60;">💬 Sentiment Analysis</span>
+            <h2 class="section-title reveal">Skills &amp; <em>tools</em></h2>
+            <p class="skills-intro reveal">My whole toolkit as a graph. Drag it around, hover to see connections, click a tool to see the projects where I used it — or search for one.</p>
+            <div class="map-toolbar reveal">
+                <input class="map-search" id="mapSearch" type="search" placeholder="Search a skill — try “Neo4j” or “BERT”" autocomplete="off" aria-label="Search a skill">
+                <div class="view-switch" role="group" aria-label="View">
+                    <button class="on" data-view="graph">Graph</button>
+                    <button data-view="list">List</button>
+                </div>
+            </div>
+            <div class="map-layout reveal" id="mapLayout">
+                <div class="map-canvas-wrap"><canvas id="skillMap" aria-label="Interactive graph of skills and tools"></canvas></div>
+                <aside class="map-panel" id="mapPanel" aria-live="polite"></aside>
+            </div>
+            <div class="skills-list" id="skillsList" hidden>
+                <div class="skill-groups" id="skillGroups"></div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Certifications & Education -->
+    <section id="credentials">
+        <div class="container">
+            <span class="section-label">Credentials</span>
+            <h2 class="section-title reveal">Certifications &amp; <em>education</em></h2>
+            <div class="cred-grid">
+                <div class="cred-col reveal">
+                    <h3>Certifications</h3>
+                    <div class="cert-list" id="certList"></div>
+                </div>
+                <div class="cred-col reveal">
+                    <h3>Education</h3>
+                    <div class="edu-item">
+                        <div class="edu-degree">B.Eng. Industrial Engineering</div>
+                        <div class="edu-school">Universidade Federal do Espírito Santo (UFES)</div>
+                        <div class="edu-date">2024 – 2027</div>
+                    </div>
+                    <div class="edu-item">
+                        <div class="edu-degree">Naval Architecture &amp; Marine Engineering</div>
+                        <div class="edu-school">Universidade Federal do Rio de Janeiro (UFRJ) · 2 years completed</div>
+                        <div class="edu-date">2022 – 2024</div>
+                    </div>
+                    <h3 style="margin-top: 2.6rem;">Languages</h3>
+                    <div class="lang-list">
+                        <span class="tag plain">English — C2 Proficient</span>
+                        <span class="tag plain">Portuguese — Native</span>
+                        <span class="tag plain">Spanish — Intermediate</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
     <section id="contact" class="contact-section">
         <div class="container">
             <h2 class="contact-title reveal">Let's build something <em>intelligent</em></h2>
+            <p class="contact-sub reveal">Vitória, Brazil · Open to relocation</p>
+            <button class="email-big reveal" id="copyEmail" data-cursor="copy">pratamarialaura@gmail.com <small>click to copy</small></button>
             <div class="contact-links reveal">
-                <a href="mailto:pratamarialaura@gmail.com" class="contact-link" title="pratamarialaura@gmail.com">
-                    <span>→</span> pratamarialaura@gmail.com
-                </a>
-                <a href="https://www.linkedin.com/in/marialauraprata" class="contact-link" target="_blank">
-                    <span>→</span> LinkedIn
-                </a>
-                <a href="https://github.com/thefortunetella" class="contact-link" target="_blank">
-                    <span>→</span> GitHub
-                </a>
-                <a href="https://wa.me/5527999218414" class="contact-link" target="_blank">
-                    <span>→</span> WhatsApp
-                </a>
+                <a href="https://www.linkedin.com/in/marialauraprata" class="btn magnetic" target="_blank" rel="noopener">LinkedIn ↗</a>
+                <a href="https://github.com/thefortunetella" class="btn magnetic" target="_blank" rel="noopener">GitHub ↗</a>
+                <a href="https://wa.me/5527999218414" class="btn magnetic" target="_blank" rel="noopener">WhatsApp ↗</a>
+                <a href="mailto:pratamarialaura@gmail.com" class="btn solid magnetic">Send an email →</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <p>© 2025 Maria Laura Prata. Crafted with care in Brazil.</p>
+        <div class="container footer-inner">
+            <span>© <span id="year">2026</span> Maria Laura Prata. Crafted with care in Brazil.</span>
+            <span>Press <b>⌘K</b> / <b>Ctrl K</b> to navigate</span>
         </div>
     </footer>
 
+    <!-- Project drawer -->
+    <div class="drawer-backdrop" id="drawerBackdrop"></div>
+    <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dTitle" aria-hidden="true">
+        <div class="drawer-bar">
+            <span id="dCounter"></span>
+            <div class="drawer-nav">
+                <button class="icon-btn" id="dPrev" aria-label="Previous project">←</button>
+                <button class="icon-btn" id="dNext" aria-label="Next project">→</button>
+                <button class="icon-btn" id="dClose" aria-label="Close">✕</button>
+            </div>
+        </div>
+        <div class="drawer-content" id="drawerContent"></div>
+    </aside>
+
+    <!-- Command palette -->
+    <div class="palette-wrap" id="paletteWrap" aria-hidden="true">
+        <div class="palette" role="dialog" aria-modal="true" aria-label="Quick navigation">
+            <input id="paletteInput" placeholder="Jump to a section, project or link…" autocomplete="off">
+            <ul id="paletteList" role="listbox"></ul>
+            <div class="palette-foot"><span>↑↓ navigate</span><span>↵ open</span><span>esc close</span></div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast" role="status"></div>
+
     <script>
-        // Scroll reveal animation
-        const revealElements = document.querySelectorAll('.reveal');
-        
-        const revealOnScroll = () => {
-            revealElements.forEach(el => {
-                const elementTop = el.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementTop < windowHeight - 100) {
-                    el.classList.add('active');
-                }
+    (() => {
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const finePointer = window.matchMedia('(pointer: fine)').matches;
+        const $ = s => document.querySelector(s);
+        const el = (tag, cls, html) => { const n = document.createElement(tag); if (cls) n.className = cls; if (html != null) n.innerHTML = html; return n; };
+
+        /* ---------------- Data ---------------- */
+
+        const EXPERIENCE = [
+            {
+                date: 'May 2025 – Present', title: 'AI Solutions Engineer', company: 'Intelliway Tecnologia',
+                description: 'Developing autonomous AI agents powered by LLMs for workflow automation. Designing secure on-premise AI architectures and integrating systems with REST APIs and unstructured data sources.',
+                highlights: [
+                    'End-to-end product engineering for <strong>Brazilian federal and state government clients</strong>: backend services, AI agents, knowledge graphs and data governance.',
+                    '<strong>AI agents &amp; data access</strong> — multi-agent architectures with PydanticAI, including Text-to-SQL agents over federal rural-credit databases, and production RAG over regulatory PDF corpora (Docling/TableFormer, hybrid dense + BM25/RRF, PostgreSQL/Qdrant).',
+                    '<strong>Knowledge graphs &amp; ontology design</strong> — elicitation cycles with domain experts to turn tacit regulatory knowledge into formal graph schemas; Neo4j pipelines with schema-guided extraction and entity deduplication; a quantitative GraphRAG vs RAG benchmark that set the target architecture.',
+                    '<strong>Data quality &amp; evaluation</strong> — semantic evaluation framework (RAGAS, DeepEval, Jaccard/F1) and a <strong>195-question, 39-theme</strong> test set isolating retrieval failures, entity-resolution defects and lineage gaps.',
+                    '<strong>Production &amp; MLOps</strong> — Python/FastAPI services on Docker/Kubernetes on-premise with CI/CD, monitoring, JWT auth, prompt-injection detection and LGPD-aligned governance.'
+                ],
+                tags: ['LLM Agents', 'Knowledge Graphs', 'API Integration', 'Enterprise AI']
+            },
+            {
+                date: 'Jul 2024 – Jun 2025', title: 'Data Scientist ML/NLP', company: 'NTT DATA Europe & Latam',
+                description: 'Led NLP and ML pipeline enhancements for digital banking assistants at Itaú Bank. Built classification and ranking systems processing 1M+ customer interactions monthly using BERT, XGBoost, and ensemble architectures.',
+                highlights: [
+                    'Defined the <strong>intent taxonomy and labeling rules</strong> behind the model together with business owners.',
+                    'Escalation-prediction system combining sentiment analysis with behavioral signals — <strong>40% improvement</strong> in early detection.',
+                    'Applied clustering to workforce analytics and delivered <strong>Prompt Engineering training to ~50 professionals</strong>.'
+                ],
+                tags: ['BERT', 'XGBoost', 'NLP', 'Banking']
+            },
+            {
+                date: 'Dec 2023 – Dec 2024', title: 'Scientific Researcher & ML Developer', company: 'LabTel – UFES',
+                description: 'Applied research in machine learning and complex networks for Smart Grid resilience. Developed Graph Neural Networks for power system vulnerability analysis and implemented optimization algorithms for critical infrastructure.',
+                highlights: [
+                    'Graph Neural Networks and topology-aware models over power-grid graphs to rank resilience and vulnerabilities in transmission systems, combined with <strong>Differential Evolution</strong> for risk assessment (Python, Julia).'
+                ],
+                tags: ['GNN', 'Smart Grid', 'Julia', 'Research']
+            },
+            {
+                date: 'Jan 2021 – Jan 2022', title: 'Data Analyst', company: 'UFSC Joinville',
+                description: 'Cost-benefit analysis and financial modeling for engineering projects, supporting data-driven resource allocation.',
+                highlights: [],
+                tags: ['Financial Modeling', 'Analytics']
+            }
+        ];
+
+        // cat: kg | agents | nlp | ml | finance
+        const PROJECTS = [
+            {
+                id: 'suframa', featured: true, isNew: true, cat: ['kg', 'agents'],
+                title: 'GraphRAG vs RAG for Federal Industrial Policy', org: 'SUFRAMA — Manaus Free Trade Zone', year: '2026',
+                summary: 'Modeled overlapping incentive regimes into a <strong>governed knowledge structure</strong> with per-theme authoritative sources, resolving normative conflicts and specifying domain pre-routing for correct grounding and traceability.',
+                highlights: [['11,364', 'Entities in the legal knowledge graph'], ['23,323', 'Typed relations across 120 documents'], ['0.88', 'Context recall with GraphRAG']],
+                details: [['Architecture', 'Hybrid vector search + legal knowledge graph'], ['Evaluation', 'DeepEval metrics + blind A/B with domain specialists']],
+                tech: ['Neo4j', 'Cypher', 'GraphRAG', 'RAG', 'Qdrant', 'Docling', 'PydanticAI', 'Gemini', 'DeepEval', 'FastAPI', 'Entity Resolution'],
+                deep: 'suframa'
+            },
+            {
+                id: 'itau', featured: true, cat: ['nlp'],
+                title: 'Digital Banking Virtual Assistant Optimization', org: 'Itaú Bank — NTT DATA', year: '2024',
+                summary: 'Led the complete overhaul of NLP pipelines for one of Latin America\'s largest digital banking assistants. The system processes over <strong>1 million customer interactions monthly</strong>, handling intent classification, sentiment analysis, and escalation risk detection in real-time.',
+                highlights: [['1M+', 'Monthly interactions processed'], ['40%', 'Improvement in escalation prediction'], ['BERT', 'Fine-tuned for Portuguese banking']],
+                details: [['Scope', 'Intent classification, sentiment, escalation risk'], ['Scale', '1M+ interactions per month, real time']],
+                tech: ['BERT', 'RoBERTa', 'XGBoost', 'Ensemble Learning', 'Sentiment Analysis', 'Learning-to-Rank'],
+                sections: [
+                    ['The problem', 'At this volume, every misrouted intent or missed frustration signal becomes an escalation to a human agent.'],
+                    ['What I did', ['Defined the <strong>intent taxonomy and labeling rules</strong> behind the model with business owners.', 'Fine-tuned BERT for Portuguese banking language, with RoBERTa, XGBoost and ensembles for classification and ranking.', 'Built escalation prediction combining <strong>sentiment analysis with behavioral signals</strong>.']],
+                    ['Result', ['<strong>40% improvement</strong> in early detection of escalations.', 'Real-time scoring over 1M+ monthly interactions.']]
+                ]
+            },
+            {
+                id: 'safrabot', isNew: true, cat: ['agents'],
+                title: 'SafraBot — Rural Credit Q&A', org: 'MAPA — Ministry of Agriculture', year: '2025 – 2026',
+                summary: 'Q&amp;A and document automation over regulatory databases and PDF corpora for rural credit, with full technical handoff to the ministry\'s engineering team.',
+                details: [['Approach', 'Text-to-SQL agents + RAG over regulatory PDFs'], ['Delivery', 'Full technical handoff to the ministry']],
+                tech: ['PydanticAI', 'Text-to-SQL', 'RAG', 'Docling', 'PostgreSQL', 'FastAPI']
+            },
+            {
+                id: 'procurement', isNew: true, cat: ['agents'],
+                title: 'Procurement Document Retrieval', org: 'Municipal government — Public Procurement', year: '2025 – 2026',
+                summary: 'Ingestion and retrieval architecture for unstructured procurement documents behind a price-research API.',
+                details: [['Focus', 'Unstructured procurement documents'], ['Interface', 'Price-research API']],
+                tech: ['RAG', 'Docling', 'Qdrant', 'FastAPI']
+            },
+            {
+                id: 'llm-ft', cat: ['nlp'],
+                title: 'LLM Fine-tuning for Domain-Specific Applications', org: 'Applied research', year: '2024 – Present',
+                summary: 'Specialized in adapting large language models (GPT, BERT, T5) for enterprise use cases through fine-tuning with domain-specific datasets. This includes experimental comparison of training architectures, preprocessing techniques optimization, and preparation of large-scale textual datasets. Developed custom evaluation frameworks to measure model performance on specific business metrics rather than generic benchmarks.',
+                details: [['Key Techniques', 'LoRA, QLoRA, Full Fine-tuning, Prompt Engineering'], ['Models', 'GPT, BERT, T5, LLaMA, Mistral']],
+                tech: ['Fine-tuning', 'LoRA', 'QLoRA', 'Hugging Face', 'PyTorch', 'Dataset Curation']
+            },
+            {
+                id: 'agents', cat: ['agents'],
+                title: 'Autonomous AI Agents for Enterprise Automation', org: 'Intelliway Tecnologia', year: '2025',
+                summary: 'Architected and deployed autonomous AI agents powered by Large Language Models for complex workflow automation. These agents handle multi-step reasoning tasks, integrate with heterogeneous REST APIs, and process unstructured data from multiple sources. Built secure on-premise deployment pipelines for enterprise clients with strict data governance requirements, ensuring LGPD compliance throughout.',
+                details: [['Architecture', 'RAG, ReAct Agents, Tool Orchestration'], ['Deployment', 'On-premise, Docker, Kubernetes']],
+                tech: ['LangChain', 'LlamaIndex', 'Neo4j', 'Qdrant', 'FastAPI', 'PydanticAI', 'Docker', 'Kubernetes'],
+                sections: [
+                    ['Under the hood', ['Multi-agent architectures with <strong>PydanticAI</strong>, including Text-to-SQL agents over federal databases.', 'REST API design with <strong>JWT authentication</strong> and API-gateway configuration, integrating legacy government systems.', 'Async and parallel processing for throughput, plus performance debugging of latency and timeout failures across provider and gateway layers.', 'Prompt-injection detection, monitoring and CI/CD on on-premise Kubernetes.']]
+                ]
+            },
+            {
+                id: 'smartgrid', cat: ['ml'],
+                title: 'Smart Grid Resilience Modeling with Graph Neural Networks', org: 'LabTel – UFES', year: '2023 – 2024',
+                summary: 'Conducted applied research at LabTel/UFES developing Graph Neural Networks to model power system resilience and vulnerability propagation in Brazil\'s energy transmission network. Created topology-aware predictive models for failure detection and ranking, enabling proactive maintenance strategies. Applied Differential Evolution optimization algorithms to improve transmission line risk assessments for critical infrastructure protection.',
+                details: [['Impact', 'Risk management for national power grid'], ['Methods', 'GNN, Differential Evolution, Graph Theory']],
+                tech: ['Graph Neural Networks', 'Python', 'Julia', 'Complex Networks']
+            },
+            {
+                id: 'churn', cat: ['nlp', 'ml'],
+                title: 'Customer Churn Prediction & Retention Analytics', org: 'Digital banking', year: '2024',
+                summary: 'Developed a comprehensive customer risk scoring system for digital banking that identifies high-risk interactions before they escalate to human agents. Built ranking algorithms combining NLP-based sentiment analysis with behavioral patterns to prioritize interventions. The recommendation mechanism increased digital service completion rates by surfacing personalized solutions at critical conversation moments.',
+                details: [['Outcome', 'Reduced escalation rates, improved CSAT'], ['Scale', 'Real-time scoring on millions of conversations']],
+                tech: ['XGBoost', 'Random Forest', 'NLP', 'Ranking Models', 'Sentiment Analysis']
+            },
+            {
+                id: 'nvda', cat: ['finance', 'ml'],
+                title: 'NVDA Stock Movement Forecasting', org: 'Personal research', year: '2024',
+                summary: 'Built a deep learning model using LSTM networks to forecast NVIDIA stock price movements based on 8 years of historical data (2016-2024). Implemented feature importance ranking and sequence modeling techniques to identify the most predictive signals. The project explored time-series ranking algorithms to determine which historical patterns have the strongest predictive power for future price action.',
+                details: [['Data', '8 years of NVDA price/volume data'], ['Architecture', 'LSTM with attention mechanisms']],
+                tech: ['TensorFlow', 'Keras', 'LSTM', 'Time Series']
+            },
+            {
+                id: 'monetary', cat: ['finance'],
+                title: 'Monetary Policy Impact on Industrial Stocks', org: 'Personal research', year: '2025',
+                summary: 'Conducting econometric analysis of how central bank interest rate decisions (Brazil\'s Selic and US Fed Funds Rate) affect Brazilian industrial stock performance on B3. Developing ranking models and performance scoring algorithms to identify which sectors show the strongest correlation with monetary policy shifts, providing quantitative insights for risk assessment and investment strategy formulation.',
+                details: [['Focus', 'B3 industrial sector analysis'], ['Methods', 'Econometrics, Statistical Modeling, Correlation Analysis']],
+                tech: ['Econometrics', 'Python', 'Statistical Modeling', 'Finance']
+            },
+            {
+                id: 'workforce', cat: ['ml'],
+                title: 'Workforce Analytics & Mental Health Leave Prediction', org: 'NTT DATA', year: '2024',
+                summary: 'Applied clustering and analytical modeling to understand employee absence patterns, with a focus on mental health leave analysis. Used unsupervised learning techniques (K-Means, DBSCAN, hierarchical clustering) to identify risk segments and inform HR policy decisions. The insights helped optimize resource allocation and develop proactive support programs for at-risk employee groups.',
+                details: [['Techniques', 'Clustering, Segmentation, Pattern Analysis'], ['Application', 'HR Analytics, Workforce Planning']],
+                tech: ['K-Means', 'DBSCAN', 'Scikit-learn', 'HR Analytics']
+            },
+
+            /* Independent work & R&D */
+            {
+                id: 'tco', status: 'In progress', cat: ['lab', 'ml'],
+                title: 'LLM Inference Cost in Brazil: API vs Self-Hosting', org: 'Undergraduate thesis research', year: '2026',
+                summary: 'When does running an open-weights model on your own GPUs beat paying per token? Under Brazilian conditions — exchange-rate volatility and a layered import-tax system in the middle of a tax reform — a single break-even number is misleading. This research models the decision as a <strong>probability curve</strong> instead.',
+                details: [['Method', 'Monte Carlo (LHS, N = 10,000) + global sensitivity analysis'], ['Status', 'Rebuilding as an open, reproducible repository; preprint planned']],
+                tech: ['Python', 'Monte Carlo', 'Sensitivity Analysis', 'Time Series'],
+                sections: [
+                    ['Hypothesis', 'The deterministic break-even between API and self-hosting is <strong>ill-conditioned</strong>: it can shift by more than an order of magnitude across plausible tax and FX scenarios. It is being re-validated with the rebuilt code before any number is published.'],
+                    ['Method', ['Latin Hypercube Sampling with Iman-Conover rank correlation.', 'BRL/USD modelled as a GBM calibrated on Central Bank (BCB) series.', 'Import-tax cascades built from the legal texts, including the CBS/IBS transition of the tax reform.', 'Sensitivity via PRCC, Sobol indices and tornado charts, with API overflow when self-hosted capacity runs out.']],
+                    ['Reproducibility by design', ['No number lives in code: every parameter sits in YAML with its source and access date.', 'Verification suite: Sobol indices checked on the Ishigami function, GBM moments against the analytic lognormal, tax cascades against hand calculations, same seed → same output hash.', 'Public repository with a citable DOI alongside the preprint.']]
+                ]
+            },
+            {
+                id: 'aprova', status: 'Validating', cat: ['lab', 'agents'],
+                title: 'Aprova — AI Compliance Reviewer for Investment Advisors', org: 'Independent product', year: '2026',
+                summary: 'Investment advisors live on social media, but every post can be rejected by their brokerage\'s compliance team — sometimes after days in a queue. Aprova checks a post <strong>before</strong> it is submitted and returns, in seconds, what would be rejected, the rule behind it and a corrected version.',
+                details: [['Rule base', '4 rules from CVM Resolution 178 + 10 from a brokerage\'s public manual'], ['Stage', 'Pre-sale A/B test before building the full product']],
+                tech: ['Prompt Engineering', 'Rule-based Validation', 'Python'],
+                sections: [
+                    ['The idea', ['Each rule is a checklist item with its <strong>source, how to check it and its severity</strong>, so every finding points to an exact rule — never a vague "this looks risky".', 'New brokerages plug in as new rule profiles, without changing the product.']],
+                    ['Validation first', ['Two landing pages run as an A/B pre-sale: individual advisors (R$ 79/month) vs. advisory offices (R$ 490/month for up to 10 advisors).', 'Target market: 27,425 accredited investment advisors in Brazil.']]
+                ]
+            },
+            {
+                id: 'pncp', status: 'Architecture', cat: ['lab', 'agents'],
+                title: 'AI Platform for Public Procurement', org: 'Independent product', year: '2026',
+                summary: 'Finds public tenders on Brazil\'s national procurement portal (PNCP) that a company can actually win, tells it what is missing to participate and organizes the paperwork.',
+                details: [['Core', 'Own normalized, searchable copy of PNCP'], ['Security', 'OWASP ASVS 5.0 L2 + OWASP Top 10 for LLMs 2025']],
+                tech: ['PostgreSQL', 'Row Level Security', 'OWASP', 'LGPD Compliance', 'Python'],
+                sections: [
+                    ['The problem', 'The official PNCP API has no full-text search and is rate-limited, so the product keeps its own normalized, searchable copy of the portal.'],
+                    ['Architecture', ['Incremental sync from the global update endpoint, <strong>storing every version</strong> of each tender; historical load from the open-data files.', 'AI in two layers: each tender is analyzed <strong>once</strong> and reused for every customer, while per-company eligibility is mostly deterministic rules — AI costs cents per tender.', 'Multi-tenant from the first customer, with Postgres Row Level Security as a safety net.', 'No permanent internal access to customer documents, and LGPD roles defined up front.']],
+                    ['Validated against reality', 'The design was checked against the official OpenAPI spec and real API calls. That overturned three assumptions — items come 10 at a time, the open-tenders endpoint also returns revoked and closed processes, and there is no filter by supplier — and the architecture was corrected for each.']
+                ]
+            },
+            {
+                id: 'b3pit', status: 'Planned', cat: ['lab', 'finance'],
+                title: 'Point-in-Time B3 Data Library', org: 'Open source', year: '2026',
+                summary: 'An open Python library that builds a survivorship-bias-free, point-in-time dataset of Brazilian stocks on the user\'s own machine: prices adjusted for corporate actions, fundamentals as they were known on each date, and delisted companies included.',
+                details: [['Sources', 'B3 COTAHIST + CVM DFP / ITR / IPE (ODbL)'], ['Design', 'Data downloads run locally; the repository ships code only']],
+                tech: ['Python', 'Time Series', 'Finance'],
+                sections: [
+                    ['Why it matters', 'Backtests on B3 often silently drop delisted companies and use fundamentals that were only published later. Both inflate results.'],
+                    ['Approach', ['Adjustment factors <strong>verified against the price tape</strong>, with a divergence report.', 'An <code>as_of</code> field everywhere; every restatement is kept and the version valid on each date is served.', 'Legal by design: B3\'s market-data policy forbids redistributing historical prices, so the library downloads them on each user\'s machine.']],
+                    ['Go / no-go', 'Week one is a cut test: adjustment factors must match the tape in at least 95% of a 50-event sample that includes 5 delisted companies.']
+                ]
+            },
+            {
+                id: 'kitchen', status: 'Built', cat: ['lab'],
+                title: 'Kitchen Display Queue', org: 'Full-stack engineering', year: '2026',
+                summary: 'A full-stack kitchen display system that ranks orders by priority — and explains to the kitchen <strong>why</strong> each order is where it is.',
+                details: [['Back end', 'Node 22, Express 5, Sequelize, PostgreSQL 16'], ['Front end', 'React 19, MUI 7, TypeScript']],
+                tech: ['JavaScript', 'TypeScript', 'React', 'Node.js', 'PostgreSQL', 'Docker', 'Jest', 'Playwright'],
+                sections: [
+                    ['Engineering choices', ['A pure, configurable <strong>priority score</strong> (order type, VIP, wait time, promised time, prep complexity) with an injected clock, so tests run on a frozen "now".', 'The ranking and the "why is it ahead" explanation read the <strong>same ordered list of criteria</strong>, so they can never disagree.', 'A declarative <strong>state machine</strong>: the API\'s allowed transitions and the UI\'s buttons come from the same table.', '<strong>Race-safe</strong> status changes with a conditional <code>UPDATE … WHERE status = expected</code>; the loser of a race gets a clear 409.', 'Stable error codes in one place, and a CHECK constraint instead of a Postgres ENUM so statuses evolve with one migration.']],
+                    ['Tested end to end', 'Unit tests covering every status × action pair, integration tests through Postgres with supertest, and Playwright browser tests for the happy path and live refresh.']
+                ]
+            }
+        ];
+
+        const CATS = [['all', 'All'], ['kg', 'Knowledge Graphs'], ['agents', 'Agents & RAG'], ['nlp', 'NLP & LLMs'], ['ml', 'Machine Learning'], ['finance', 'Finance'], ['lab', 'Independent & R&D']];
+
+        const SKILLS = [
+            ['Graph & semantics', ['Neo4j', 'Cypher', 'GraphRAG', 'Ontology Design', 'Entity Resolution', 'Graph Neural Networks', 'Complex Networks']],
+            ['Retrieval & LLMs', ['RAG', 'Qdrant', 'ChromaDB', 'FAISS', 'pgvector', 'Elasticsearch', 'Hybrid BM25/RRF', 'Rerankers', 'Claude API & Agent SDK', 'MCP', 'OpenAI', 'Gemini', 'PydanticAI', 'LangChain', 'LlamaIndex', 'Text-to-SQL', 'Prompt Engineering']],
+            ['NLP & deep learning', ['BERT', 'RoBERTa', 'GPT', 'T5', 'LLaMA', 'Mistral', 'Hugging Face', 'spaCy', 'NLTK', 'Fine-tuning', 'LoRA', 'QLoRA', 'PyTorch', 'TensorFlow', 'Keras', 'LSTM']],
+            ['Data, ML & statistics', ['Python', 'SQL', 'Julia', 'Scikit-learn', 'XGBoost', 'LightGBM', 'Learning-to-Rank', 'Sentiment Analysis', 'K-Means', 'DBSCAN', 'Time Series', 'Monte Carlo', 'Sensitivity Analysis', 'Econometrics', 'Docling', 'PostgreSQL', 'MongoDB', 'Redis', 'Snowflake', 'BigQuery', 'Airflow', 'Kafka']],
+            ['Software engineering', ['FastAPI', 'Node.js', 'JavaScript', 'TypeScript', 'React', 'C#', 'Jest', 'Playwright', 'Git']],
+            ['Quality & governance', ['DeepEval', 'RAGAS', 'Rule-based Validation', 'Anomaly Detection', 'Drift Analysis', 'Lineage Mapping', 'LGPD Compliance', 'OWASP', 'Row Level Security']],
+            ['Cloud & MLOps', ['AWS', 'Google Cloud', 'Docker', 'Kubernetes', 'MLflow', 'CI/CD']]
+        ];
+
+        // url: paste the "Show credential" link to make a row clickable
+        const CERTS = [
+            { name: 'Claude Certified Architect — Foundations', issuer: 'Anthropic', date: 'Jul 2026', top: true, note: 'Production generative-AI solution design with Claude Code, the Claude Agent SDK, the Claude API and MCP. Valid through Jul 2027.' },
+            { name: 'EF SET English Certificate — 83/100 (C2 Proficient)', issuer: 'EF SET', date: 'Oct 2026', top: true, id: '9yTtxK' },
+            { name: 'Neo4j Graph Data Science Certification', issuer: 'Neo4j', date: 'Aug 2026', top: true, id: 'e7920ec8-8df1-43d9-a638-5cf45547d3b6' },
+            { name: 'Building with the Claude API', issuer: 'Anthropic', date: 'Apr 2026' },
+            { name: 'Introduction to Neo4j Graph Data Science', issuer: 'Neo4j GraphAcademy', date: 'Oct 2025' },
+            { name: 'Python for Data Science, AI & Development', issuer: 'IBM', date: 'Oct 2025' },
+            { name: 'Google Cloud Innovator', issuer: 'Google Developers Group', date: 'Mar 2025' },
+            { name: 'Google Data Analytics Specialization', issuer: 'Google', date: 'May 2024' },
+            { name: 'Generative AI Fundamentals', issuer: 'Databricks', date: 'May 2024' }
+        ];
+
+        const SOFT = [
+            ['Stakeholder elicitation', 'I run elicitation cycles with domain experts to turn tacit regulatory knowledge into formal schemas and unambiguous business rules.'],
+            ['Speaking both languages', 'I gather requirements from non-technical experts and align definitions with client technical teams acting as validators.'],
+            ['Evidence over opinion', 'I report architecture decisions and quality findings to leadership backed by benchmarks — like the GraphRAG vs RAG study that set a target architecture.'],
+            ['Teaching', 'I delivered Prompt Engineering training to ~50 professionals at NTT DATA.'],
+            ['Documentation & handoff', 'I write documentation that client engineering teams reuse, and led a full technical handoff to the Ministry of Agriculture\'s team.'],
+            ['End-to-end ownership', 'I own product code from API design to production — including the unglamorous latency and timeout debugging.'],
+            ['Research mindset', 'From Smart Grid research to RAG benchmarks, I test hypotheses before betting on them — and say so when the data disagrees.'],
+            ['Multilingual & mobile', 'C2 English (EF SET 83/100), native Portuguese, intermediate Spanish. Comfortable in remote, multi-stakeholder teams and open to relocation.']
+        ];
+
+        /* ---------------- Hero title split ---------------- */
+
+        const heroTitle = $('#heroTitle');
+        if (!reduceMotion) {
+            let i = 0;
+            const wrap = node => {
+                const out = document.createDocumentFragment();
+                node.childNodes.forEach(child => {
+                    if (child.nodeType === 3) {
+                        child.textContent.split(/(\s+)/).forEach(part => {
+                            if (!part) return;
+                            if (/^\s+$/.test(part)) { out.appendChild(document.createTextNode(' ')); return; }
+                            const w = el('span', 'word');
+                            const inner = el('span');
+                            inner.textContent = part;
+                            inner.style.setProperty('--i', i++);
+                            w.appendChild(inner);
+                            out.appendChild(w);
+                        });
+                    } else {
+                        const clone = child.cloneNode(false);
+                        clone.appendChild(wrap(child));
+                        out.appendChild(clone);
+                    }
+                });
+                return out;
+            };
+            const frag = wrap(heroTitle);
+            heroTitle.innerHTML = '';
+            heroTitle.appendChild(frag);
+        }
+
+        /* ---------------- Certifications ---------------- */
+
+        const certList = $('#certList');
+        CERTS.forEach(c => {
+            const row = el(c.url ? 'a' : 'div', 'cert-row' + (c.top ? ' top' : ''));
+            if (c.url) { row.href = c.url; row.target = '_blank'; row.rel = 'noopener'; row.dataset.cursor = 'verify'; }
+            const meta = [c.note, c.id ? `Credential ID ${c.id}` : ''].filter(Boolean).join(' · ');
+            row.innerHTML = `<div><div class="cert-name"></div><div class="cert-issuer"></div>${meta ? '<div class="cert-note"></div>' : ''}</div><div class="cert-date"></div>`;
+            row.querySelector('.cert-name').textContent = c.name;
+            row.querySelector('.cert-issuer').textContent = c.issuer;
+            if (meta) row.querySelector('.cert-note').textContent = meta;
+            row.querySelector('.cert-date').textContent = c.date + (c.url ? ' ↗' : '');
+            certList.appendChild(row);
+        });
+        document.querySelectorAll('[data-count="7"]').forEach(n => { n.dataset.count = CERTS.length; n.textContent = CERTS.length; });
+
+        /* ---------------- Rolling tagline ---------------- */
+
+        const TAGLINE = [
+            '<em>Open to work</em>',
+            'Knowledge graphs AI can reason over',
+            'From prototype to <em>production</em>',
+            'Evaluated, not just demoed',
+            'Crafted with <em>care</em>',
+            'Open to relocation',
+            'Let\'s build something <em>intelligent</em>'
+        ];
+        const marquee = $('#marquee');
+        [...TAGLINE, ...TAGLINE].forEach(t => marquee.appendChild(el('span', 'marquee-item', `<span>${t}</span>`)));
+
+        /* ---------------- Experience ---------------- */
+
+        const expList = $('#experienceList');
+        EXPERIENCE.forEach((e, idx) => {
+            const item = el('div', 'exp-item reveal' + (idx === 0 ? ' open' : ''));
+            const bodyId = 'exp-body-' + idx;
+            item.innerHTML = `
+                <button class="exp-head" aria-expanded="${idx === 0}" aria-controls="${bodyId}">
+                    <span class="exp-date">${e.date}</span>
+                    <span><span class="exp-title">${e.title}</span><span class="exp-company">${e.company}</span></span>
+                    <span class="exp-toggle" aria-hidden="true">+</span>
+                </button>
+                <div class="exp-body" id="${bodyId}"><div><div class="exp-inner">
+                    <p class="exp-description">${e.description}</p>
+                    ${e.highlights.length ? `<ul class="exp-highlights">${e.highlights.map(h => `<li>${h}</li>`).join('')}</ul>` : ''}
+                    <div class="tags">${e.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+                </div></div></div>`;
+            item.querySelector('.exp-head').addEventListener('click', ev => {
+                const open = item.classList.toggle('open');
+                ev.currentTarget.setAttribute('aria-expanded', open);
+            });
+            expList.appendChild(item);
+        });
+
+        /* ---------------- Projects ---------------- */
+
+        const featuredGrid = $('#featuredGrid');
+        PROJECTS.filter(p => p.featured).forEach(p => {
+            const card = el('button', 'featured reveal');
+            card.dataset.cursor = 'open';
+            card.innerHTML = `
+                <span class="open-hint" aria-hidden="true">↗</span>
+                <div class="featured-top"><span class="featured-badge">Featured Project</span><span class="featured-year">${p.year}</span></div>
+                <h3>${p.title}</h3>
+                <p class="featured-subtitle">${p.org}</p>
+                <p class="featured-description">${p.summary}</p>
+                <div class="featured-highlights">${p.highlights.map(([n, l]) => `<div><div class="highlight-number">${n}</div><div class="highlight-label">${l}</div></div>`).join('')}</div>`;
+            card.addEventListener('click', () => openDrawer(p.id));
+            featuredGrid.appendChild(card);
+        });
+
+        const projectList = $('#projectList');
+        const rows = new Map();
+        PROJECTS.forEach((p, i) => {
+            const row = el('button', 'project-row reveal');
+            row.dataset.cursor = 'open';
+            row.innerHTML = `
+                <span class="row-num">${String(i + 1).padStart(2, '0')}</span>
+                <span class="row-title">${p.title}${p.status ? `<span class="row-new">${p.status}</span>` : p.isNew ? '<span class="row-new">new</span>' : ''}</span>
+                <span class="row-org">${p.org}</span>
+                <span class="row-year">${p.year}</span>
+                <span class="row-arrow" aria-hidden="true">→</span>`;
+            row.addEventListener('click', () => openDrawer(p.id));
+            rows.set(p.id, row);
+            projectList.appendChild(row);
+        });
+
+        const filterBar = $('#filterBar');
+        let activeCat = 'all', activeTech = null;
+        CATS.forEach(([key, label]) => {
+            const n = key === 'all' ? PROJECTS.length : PROJECTS.filter(p => p.cat.includes(key)).length;
+            const b = el('button', 'chip-btn' + (key === 'all' ? ' active' : ''), `${label}<span class="count">${n}</span>`);
+            b.dataset.cat = key;
+            b.addEventListener('click', () => { activeTech = null; activeCat = key; applyFilter(); });
+            filterBar.appendChild(b);
+        });
+
+        const techNote = $('#techNote');
+        $('#techClear').addEventListener('click', () => { activeTech = null; applyFilter(); });
+
+        function applyFilter() {
+            filterBar.querySelectorAll('.chip-btn').forEach(b => b.classList.toggle('active', !activeTech && b.dataset.cat === activeCat));
+            PROJECTS.forEach(p => {
+                const show = activeTech ? p.tech.includes(activeTech) : (activeCat === 'all' || p.cat.includes(activeCat));
+                const row = rows.get(p.id);
+                row.classList.toggle('hidden', !show);
+                if (show) row.classList.add('active');
+            });
+            techNote.classList.toggle('show', !!activeTech);
+            if (activeTech) $('#techName').textContent = activeTech;
+        }
+
+        function filterByTech(tech) {
+            closeDrawer();
+            activeTech = tech;
+            applyFilter();
+            $('#filterBar').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+        }
+
+        const techCount = tech => PROJECTS.filter(p => p.tech.includes(tech)).length;
+
+        /* ---------------- Drawer ---------------- */
+
+        const drawer = $('#drawer');
+        const drawerContent = $('#drawerContent');
+        let currentIdx = -1, lastFocus = null;
+
+        function renderSections(sections) {
+            return sections.map(([title, body]) => `
+                <div class="d-section"><h4>${title}</h4>
+                ${Array.isArray(body) ? `<ul>${body.map(b => `<li>${b}</li>`).join('')}</ul>` : `<p>${body}</p>`}</div>`).join('');
+        }
+
+        function suframaDeep() {
+            return `
+                <div class="deep-divider">Technical deep-dive</div>
+                ${renderSections([
+                    ['The problem', ['The corpus — 120 documents and 3,932 chunks on Free Trade Zone incentives, the Tax Reform, R&amp;D, registration and procurement — is hostile to plain vector search.', '<strong>Laws relate to laws</strong>: norms amend, revoke and regulate each other, often in a different document.', '<strong>The norm is the answer</strong>: 1,223 distinct norms, and every answer must cite the one that grounds it.', '<strong>Knowledge is spread out</strong>: Law 8.387/1991 alone appears in 59 documents.']],
+                    ['The idea', 'Represent the domain\'s entities — norms, agencies, programs, taxes, procedures — and the <strong>legal relations between them</strong> as a graph, and query it alongside hybrid vector search. To test it fairly, both architectures share the same API, routing, query decomposition, vector collection and generation model; only the graph layer differs.']
+                ])}
+                <div class="d-section">
+                    <h4>The pipeline <small>interactive</small></h4>
+                    <p>Switch between architectures to see which stages run and how the metrics move.</p>
+                    <div class="mode-switch" id="modeSwitch">
+                        <span class="mode-pill" id="modePill"></span>
+                        <button data-mode="rag">RAG</button>
+                        <button data-mode="graph" class="on">GraphRAG</button>
+                    </div>
+                    <div class="stages-wrap mode-graph" id="stagesWrap">
+                        <div class="stages">
+                            <div class="stage"><span class="s-n">1</span><div><b>Docling conversion</b><span>Layout analysis, OCR and table structure recognition.</span></div></div>
+                            <div class="stage"><span class="s-n">2</span><div><b>Chunking + per-chunk summary</b><span>Up to 1,500 tokens per chunk, tables kept intact.</span></div></div>
+                            <div class="stage"><span class="s-n">3</span><div><b>Hybrid index in Qdrant</b><span>Two dense vectors (chunk + summary, 3,072-d) + BM25, fused with RRF.</span></div></div>
+                            <div class="stage graph"><span class="s-n">4</span><div><b>Legal entity &amp; relation extraction</b><span>Validated structured output; canonical norm names; 24 entity types, 9 legal relations.</span></div></div>
+                            <div class="stage graph"><span class="s-n">5</span><div><b>Neo4j + entity resolution</b><span>kNN ≥ 0.86 merges only with deterministic confirmation (same norm signature or acronym).</span></div></div>
+                            <div class="stage graph"><span class="s-n">6</span><div><b>Entity ranking &amp; graph context</b><span>Top-15 entities, related relations and extra chunks, under a 30 s time budget.</span></div></div>
+                            <div class="stage"><span class="s-n">7</span><div><b>Grounded generation</b><span>Structured claim + source pairs, synthesised across sub-queries.</span></div></div>
+                        </div>
+                        <div class="bars" id="bars"></div>
+                        <p class="bars-note">DeepEval on a 98-question test set, judged by a model from a different family than the generator.</p>
+                    </div>
+                </div>
+                ${renderSections([
+                    ['What I built', ['<strong>Legal graph schema</strong> — 11 kinds of norm that are never merged together, plus relations such as <code>REVOGA</code>, <code>ALTERA</code>, <code>REGULAMENTA</code> and <code>FUNDAMENTA_SE_EM</code>, inspired by LexML and the European ELI ontology.', '<strong>Entity resolution that never fuses distinct laws</strong> — an offline dedup pipeline cut duplicate groups from 1,187 to 272.', '<strong>Custom entity ranker</strong> — <code>cos(query, entity) + 0.01·ln(1 + weight) + type_bonus</code>, so generic, highly connected entities don\'t flood the context.', '<strong>Query decomposition</strong> — hybrid pre-search with per-source z-score normalisation picks candidate themes; the LLM emits up to 3 filtered sub-queries.', '<strong>Graceful degradation</strong> — if graph enrichment exceeds its time budget, the answer continues with vector search only.']],
+                    ['Decisions that mattered', ['Relation label as <strong>validated free text</strong> instead of one field per type: 39–50% typed relations vs 11–17%.', 'Kept the in-house extractor over docling-graph, which was 2–4× slower per document.', '<strong>Document anchor</strong> (the norm a document <em>is</em>): typed relations from 41% to 75%.', '<strong>Temporal guard</strong>: anachronistic relations from 10 to 0.', 'Reused embeddings, a time budget and 1-hop traversal cut the latency gap vs RAG from +62.8% to +37.6%.', 'Rewritten theme descriptions raised theme-selection accuracy from 62.2% to 76.0%.']],
+                    ['Evaluation &amp; outcome', ['Built a <strong>blind A/B evaluation tool</strong> — hidden labels, balanced deterministic ordering — and ran it with specialists from four SUFRAMA units on 86 questions.', 'Measured cost too: GraphRAG used a median of <strong>52% more tokens and 37% more time</strong> per answer.', 'The benchmark set the target architecture, and the graph schema, norm deduplication, entity ranker and evaluation toolkit remain as reusable assets.']]
+                ])}`;
+        }
+
+        const METRICS = [['Context recall', 0.81, 0.88], ['Context precision', 0.68, 0.61], ['Faithfulness', 0.96, 0.94], ['Answer relevance', 0.81, 0.79]];
+
+        function setupSuframa() {
+            const bars = $('#bars');
+            bars.innerHTML = METRICS.map(([name]) => `<div class="bar-row"><span>${name}</span><div class="bar"><i></i></div><span class="bar-val"></span></div>`).join('');
+            const sw = $('#modeSwitch'), pill = $('#modePill'), wrap = $('#stagesWrap');
+            const set = mode => {
+                const btn = sw.querySelector(`[data-mode="${mode}"]`);
+                sw.querySelectorAll('button').forEach(b => b.classList.toggle('on', b === btn));
+                pill.style.width = btn.offsetWidth + 'px';
+                pill.style.transform = `translateX(${btn.offsetLeft - 4}px)`;
+                wrap.className = 'stages-wrap mode-' + mode;
+                bars.querySelectorAll('.bar-row').forEach((r, i) => {
+                    const v = METRICS[i][mode === 'rag' ? 1 : 2];
+                    r.querySelector('i').style.width = (v * 100) + '%';
+                    r.querySelector('.bar-val').textContent = v.toFixed(2);
+                });
+            };
+            sw.querySelectorAll('button').forEach(b => b.addEventListener('click', () => set(b.dataset.mode)));
+            setTimeout(() => set('graph'), 350);
+        }
+
+        function openDrawer(id) {
+            const idx = PROJECTS.findIndex(p => p.id === id);
+            if (idx < 0) return;
+            const p = PROJECTS[idx];
+            currentIdx = idx;
+            if (!document.body.classList.contains('drawer-open')) lastFocus = document.activeElement;
+            $('#dCounter').textContent = `${String(idx + 1).padStart(2, '0')} / ${String(PROJECTS.length).padStart(2, '0')}`;
+            drawerContent.innerHTML = `
+                <div class="d-org">${p.org} · ${p.year}${p.status ? ` · <span class="row-new" style="margin-left:0.2rem">${p.status}</span>` : ''}</div>
+                <h3 class="d-title" id="dTitle">${p.title}</h3>
+                <p class="d-summary">${p.summary}</p>
+                <div class="d-details">${p.details.map(([l, v]) => `<div><span class="detail-label">${l}</span><span class="detail-value">${v}</span></div>`).join('')}</div>
+                <div class="d-tech tags">${p.tech.map(t => techCount(t) > 1 ? `<button class="chip-btn" data-tech="${t}" title="See other projects with ${t}">${t}</button>` : `<span class="tag plain">${t}</span>`).join('')}</div>
+                ${p.deep === 'suframa' ? suframaDeep() : ''}
+                ${p.sections ? `<div class="deep-divider">Under the hood</div>${renderSections(p.sections)}` : ''}`;
+            drawerContent.querySelectorAll('[data-tech]').forEach(b => b.addEventListener('click', () => filterByTech(b.dataset.tech)));
+            if (p.deep === 'suframa') setupSuframa();
+            document.body.classList.add('drawer-open', 'locked');
+            drawer.setAttribute('aria-hidden', 'false');
+            drawer.scrollTop = 0;
+            $('#dClose').focus({ preventScroll: true });
+            history.replaceState(null, '', '#project-' + p.id);
+        }
+
+        function closeDrawer() {
+            if (!document.body.classList.contains('drawer-open')) return;
+            document.body.classList.remove('drawer-open', 'locked');
+            drawer.setAttribute('aria-hidden', 'true');
+            history.replaceState(null, '', location.pathname + location.search);
+            if (lastFocus) lastFocus.focus({ preventScroll: true });
+        }
+
+        $('#dClose').addEventListener('click', closeDrawer);
+        $('#drawerBackdrop').addEventListener('click', closeDrawer);
+        $('#dPrev').addEventListener('click', () => openDrawer(PROJECTS[(currentIdx - 1 + PROJECTS.length) % PROJECTS.length].id));
+        $('#dNext').addEventListener('click', () => openDrawer(PROJECTS[(currentIdx + 1) % PROJECTS.length].id));
+
+        /* ---------------- Skills ---------------- */
+
+        const skillGroups = $('#skillGroups');
+        SKILLS.forEach(([group, items]) => {
+            const g = el('div', 'skill-group reveal');
+            g.innerHTML = `<h3>${group}</h3>`;
+            const cloud = el('div', 'skills-cloud');
+            items.forEach(s => {
+                const n = techCount(s);
+                const b = el(n ? 'button' : 'span', 'skill-bubble');
+                b.innerHTML = n ? `${s}<sup>${n}</sup>` : s;
+                if (n) b.addEventListener('click', () => filterByTech(s));
+                cloud.appendChild(b);
+            });
+            g.appendChild(cloud);
+            skillGroups.appendChild(g);
+        });
+
+        /* ---------------- Force-directed graph (hero + skills map) ---------------- */
+
+        // Canvas colors come from the CSS theme tokens, re-read when the theme changes
+        const C = {};
+        const readColors = () => {
+            const cs = getComputedStyle(document.documentElement);
+            ['accent', 'text', 'text-muted', 'text-dim', 'node-used', 'node-soft', 'node-idle', 'accent-rgb', 'text-rgb'].forEach(k => {
+                C[k.replace(/-([a-z])/g, (_, c) => c.toUpperCase())] = cs.getPropertyValue('--' + k).trim();
             });
         };
+        readColors();
+        const graphs = [];
 
-        window.addEventListener('scroll', revealOnScroll);
-        window.addEventListener('load', revealOnScroll);
+        function makeGraph(canvas, spec) {
+            const ctx = canvas.getContext('2d');
+            const opt = Object.assign({
+                repulsion: 2600, restRoot: 120, restHub: 78, gravity: 0.0016,
+                rootR: 9, hubR: 6, leafR: 3.5, smallWidth: 420, smallScale: 0.62,
+                leafColor: () => C.textMuted, showLeafLabels: w => w >= 420,
+                onClick: null, onFocus: null
+            }, spec);
+            const hubs = Object.keys(opt.edges).filter(k => k !== opt.root);
+            let nodes = [], links = [], W = 0, H = 0, hover = null, drag = null, pinned = null, visible = true;
+            const pointer = { x: 0, y: 0, sx: 0, sy: 0, down: false, moved: false };
 
-        // Smooth scroll for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+            function build() {
+                const names = new Set();
+                Object.entries(opt.edges).forEach(([a, bs]) => { names.add(a); bs.forEach(b => names.add(b)); });
+                const prev = new Map(nodes.map(n => [n.id, n]));
+                // Seed positions: hubs on an ellipse, each leaf fanned out behind its first hub
+                const parentOf = new Map();
+                hubs.forEach(h => opt.edges[h].forEach(c => { if (!parentOf.has(c)) parentOf.set(c, h); }));
+                const hubAngle = h => (hubs.indexOf(h) / hubs.length) * Math.PI * 2 - Math.PI / 2;
+                const siblings = h => opt.edges[h].filter(c => parentOf.get(c) === h);
+                nodes = [...names].map(id => {
+                    const old = prev.get(id);
+                    if (old) return old;
+                    const kind = id === opt.root ? 'root' : hubs.includes(id) ? 'hub' : 'leaf';
+                    let x = W / 2, y = H / 2;
+                    if (kind === 'hub') {
+                        const a = hubAngle(id);
+                        x += Math.cos(a) * W * 0.24; y += Math.sin(a) * H * 0.24;
+                    } else if (kind === 'leaf') {
+                        const h = parentOf.get(id), sib = siblings(h), j = sib.indexOf(id);
+                        const a = hubAngle(h) + (sib.length > 1 ? (j / (sib.length - 1) - 0.5) * 2.2 : 0);
+                        x += Math.cos(hubAngle(h)) * W * 0.24 + Math.cos(a) * W * 0.17;
+                        y += Math.sin(hubAngle(h)) * H * 0.24 + Math.sin(a) * H * 0.17;
+                    }
+                    return { id, kind, x, y, vx: 0, vy: 0 };
+                });
+                const byId = new Map(nodes.map(n => [n.id, n]));
+                links = [];
+                Object.entries(opt.edges).forEach(([a, bs]) => bs.forEach(b => links.push([byId.get(a), byId.get(b)])));
+                nodes.forEach(n => { n.neighbors = new Set(); });
+                links.forEach(([a, b]) => { a.neighbors.add(b); b.neighbors.add(a); });
+            }
+
+            function resize() {
+                const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                W = canvas.clientWidth; H = canvas.clientHeight;
+                canvas.width = W * dpr; canvas.height = H * dpr;
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                build();
+            }
+
+            const scale = () => W < opt.smallWidth ? opt.smallScale : 1;
+
+            function step() {
+                const k = scale();
+                for (let i = 0; i < nodes.length; i++) {
+                    const a = nodes[i];
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const b = nodes[j];
+                        let dx = a.x - b.x, dy = a.y - b.y;
+                        const d2 = dx * dx + dy * dy || 0.01;
+                        const f = (opt.repulsion * k) / d2;
+                        const d = Math.sqrt(d2);
+                        dx /= d; dy /= d;
+                        a.vx += dx * f; a.vy += dy * f;
+                        b.vx -= dx * f; b.vy -= dy * f;
+                    }
                 }
+                links.forEach(([a, b]) => {
+                    const rest = (a.kind === 'root' || b.kind === 'root' ? opt.restRoot : opt.restHub) * k;
+                    const dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy) || 0.01;
+                    const f = (d - rest) * 0.012;
+                    a.vx += (dx / d) * f; a.vy += (dy / d) * f;
+                    b.vx -= (dx / d) * f; b.vy -= (dy / d) * f;
+                });
+                nodes.forEach(n => {
+                    n.vx += (W / 2 - n.x) * opt.gravity;
+                    n.vy += (H / 2 - n.y) * opt.gravity;
+                    if (n === drag) { n.x = pointer.x; n.y = pointer.y; n.vx = n.vy = 0; return; }
+                    n.vx *= 0.86; n.vy *= 0.86;
+                    n.x += n.vx; n.y += n.vy;
+                    const padX = Math.max(44, n.pad || 0);
+                    n.x = Math.max(padX, Math.min(W - padX, n.x));
+                    n.y = Math.max(28, Math.min(H - 20, n.y));
+                });
+            }
+
+            const radius = n => n.kind === 'root' ? opt.rootR : n.kind === 'hub' ? opt.hubR : opt.leafR;
+            const focusNode = () => drag || hover || pinned;
+
+            function draw() {
+                ctx.clearRect(0, 0, W, H);
+                const focus = focusNode();
+                links.forEach(([a, b]) => {
+                    const on = focus && (a === focus || b === focus);
+                    ctx.strokeStyle = on ? `rgba(${C.accentRgb}, 0.8)` : focus ? `rgba(${C.textRgb}, 0.05)` : `rgba(${C.textRgb}, 0.13)`;
+                    ctx.lineWidth = on ? 1.4 : 1;
+                    ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+                });
+                const showLeaves = opt.showLeafLabels(W);
+                nodes.forEach(n => {
+                    const near = focus && (n === focus || focus.neighbors.has(n));
+                    ctx.globalAlpha = focus && !near ? 0.22 : 1;
+                    ctx.fillStyle = n.kind === 'root' || n === focus ? C.accent : n.kind === 'hub' ? C.text : opt.leafColor(n.id);
+                    ctx.beginPath(); ctx.arc(n.x, n.y, radius(n) + (n === focus ? 2 : 0), 0, Math.PI * 2); ctx.fill();
+                    if (n.kind === 'root' || n === pinned) {
+                        ctx.strokeStyle = `rgba(${C.accentRgb}, 0.4)`;
+                        ctx.beginPath(); ctx.arc(n.x, n.y, radius(n) + 8, 0, Math.PI * 2); ctx.stroke();
+                    }
+                    if (n.kind !== 'leaf' || near || showLeaves) {
+                        ctx.font = n.kind === 'root' ? 'italic 21px "Instrument Serif", Georgia, serif'
+                            : n.kind === 'hub' ? '500 13px Satoshi, system-ui, sans-serif' : '12px Satoshi, system-ui, sans-serif';
+                        ctx.fillStyle = n.kind === 'leaf' && !near ? C.textMuted : C.text;
+                        ctx.textAlign = 'center';
+                        n.pad = ctx.measureText(n.id).width / 2 + 6;
+                        ctx.fillText(n.id, n.x, n.y - radius(n) - (n.kind === 'root' ? 14 : 7));
+                    }
+                    ctx.globalAlpha = 1;
+                });
+            }
+
+            const loop = () => {
+                if (visible) { step(); draw(); }
+                requestAnimationFrame(loop);
+            };
+
+            const pick = (x, y) => {
+                let best = null, bd = 22;
+                nodes.forEach(n => { const d = Math.hypot(n.x - x, n.y - y); if (d < bd) { bd = d; best = n; } });
+                return best;
+            };
+            const local = e => { const r = canvas.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; };
+            const notifyFocus = () => { if (opt.onFocus) opt.onFocus(focusNode()); };
+            const setCursor = () => {
+                const n = drag || hover;
+                const label = n && opt.cursorLabel ? opt.cursorLabel(n) : n ? 'drag' : null;
+                if (label) canvas.dataset.cursor = label; else delete canvas.dataset.cursor;
+            };
+
+            canvas.addEventListener('pointerdown', e => {
+                const p = local(e);
+                Object.assign(pointer, p, { sx: p.x, sy: p.y, down: true, moved: false });
+                drag = pick(p.x, p.y);
+                if (drag) canvas.setPointerCapture(e.pointerId);
             });
+            canvas.addEventListener('pointermove', e => {
+                const p = local(e);
+                pointer.x = p.x; pointer.y = p.y;
+                if (pointer.down && Math.hypot(p.x - pointer.sx, p.y - pointer.sy) > 5) pointer.moved = true;
+                if (!drag) {
+                    const h = pick(p.x, p.y);
+                    if (h !== hover) { hover = h; notifyFocus(); }
+                }
+                setCursor();
+                if (reduceMotion) { if (drag) { drag.x = p.x; drag.y = p.y; } draw(); }
+            });
+            const release = () => {
+                const clicked = drag && !pointer.moved ? drag : null;
+                drag = null; pointer.down = false;
+                if (clicked && opt.onClick) opt.onClick(clicked, api);
+                notifyFocus();
+                if (reduceMotion) draw();
+            };
+            canvas.addEventListener('pointerup', release);
+            canvas.addEventListener('pointercancel', release);
+            canvas.addEventListener('pointerleave', () => {
+                if (!drag) { hover = null; setCursor(); notifyFocus(); if (reduceMotion) draw(); }
+            });
+
+            const api = {
+                pin(id) {
+                    pinned = id ? nodes.find(n => n.id === id) || null : null;
+                    notifyFocus();
+                    if (reduceMotion) draw();
+                    return pinned;
+                },
+                find(q) {
+                    q = q.trim().toLowerCase();
+                    if (!q) return null;
+                    return nodes.find(n => n.id.toLowerCase() === q) || nodes.find(n => n.id.toLowerCase().startsWith(q)) || nodes.find(n => n.id.toLowerCase().includes(q)) || null;
+                },
+                kindOf(id) { const n = nodes.find(x => x.id === id); return n ? n.kind : null; },
+                redraw: () => draw()
+            };
+            graphs.push(api);
+
+            new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(canvas);
+            window.addEventListener('resize', () => { resize(); if (reduceMotion) draw(); });
+            resize();
+            if (reduceMotion) {
+                for (let i = 0; i < 400; i++) step();
+                draw();
+                if (document.fonts) document.fonts.ready.then(draw);
+            } else {
+                loop();
+            }
+            return api;
+        }
+
+        // Hero graph: a compact map of what I work with
+        makeGraph($('#kg'), {
+            root: 'Maria Laura',
+            edges: {
+                'Maria Laura': ['Knowledge Graphs', 'Retrieval', 'Agents', 'NLP', 'Graph ML', 'MLOps'],
+                'Knowledge Graphs': ['Neo4j', 'Cypher', 'Entity Resolution', 'GraphRAG'],
+                'Retrieval': ['RAG', 'Qdrant', 'Docling', 'GraphRAG', 'DeepEval'],
+                'Agents': ['PydanticAI', 'Text-to-SQL', 'LangChain'],
+                'NLP': ['BERT', 'RoBERTa', 'XGBoost', 'Fine-tuning'],
+                'Graph ML': ['Graph Neural Networks', 'Julia'],
+                'MLOps': ['FastAPI', 'Docker', 'Kubernetes']
+            },
+            cursorLabel: n => n.kind === 'leaf' && techCount(n.id) ? 'filter' : 'drag',
+            onClick: n => { if (n.kind === 'leaf' && techCount(n.id)) filterByTech(n.id); }
         });
 
-        // Parallax effect for orbs
-        document.addEventListener('mousemove', (e) => {
-            const orbs = document.querySelectorAll('.orb');
-            const x = e.clientX / window.innerWidth;
-            const y = e.clientY / window.innerHeight;
-            
-            orbs.forEach((orb, index) => {
-                const speed = (index + 1) * 20;
-                orb.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
-            });
+        /* ---------------- Soft skills ---------------- */
+
+        const softGrid = $('#softGrid');
+        SOFT.forEach(([title, text], i) => {
+            const c = el('div', 'soft-card');
+            c.innerHTML = `<span class="soft-num">${String(i + 1).padStart(2, '0')}</span><h3>${title}</h3><p>${text}</p>`;
+            softGrid.appendChild(c);
         });
+
+        /* ---------------- Skills map ---------------- */
+
+        const SOFT_HUB = 'Soft skills';
+        const skillGroupOf = new Map();
+        SKILLS.forEach(([g, items]) => items.forEach(s => skillGroupOf.set(s, g)));
+        const softText = new Map(SOFT.map(([t, d]) => [t, d]));
+        const mapEdges = { 'Toolkit': [...SKILLS.map(([g]) => g), SOFT_HUB] };
+        SKILLS.forEach(([g, items]) => { mapEdges[g] = items; });
+        mapEdges[SOFT_HUB] = SOFT.map(([t]) => t);
+
+        const mapPanel = $('#mapPanel');
+        const projectsUsing = tech => PROJECTS.filter(p => p.tech.includes(tech));
+        const legend = `<div class="map-legend"><span><i style="background:var(--accent)"></i>selected</span><span><i style="background:var(--node-used)"></i>used in a project</span><span><i style="background:var(--node-soft)"></i>soft skill</span><span><i style="background:var(--node-idle)"></i>in my toolkit</span></div>`;
+
+        function renderMapPanel(n) {
+            if (!n) {
+                const used = [...skillGroupOf.keys()].filter(s => techCount(s)).length;
+                mapPanel.innerHTML = `
+                    <div class="mp-kicker">Explore</div>
+                    <div class="mp-title">${skillGroupOf.size} tools, ${SKILLS.length} areas</div>
+                    <p class="mp-text">${used} of them show up in the projects on this page. Hover or click any node — or search above — to see where.</p>
+                    ${legend}`;
+                return;
+            }
+            if (n.kind === 'root') {
+                renderMapPanel(null);
+                return;
+            }
+            if (n.kind === 'hub') {
+                const items = n.id === SOFT_HUB ? SOFT.map(([t]) => t) : (SKILLS.find(([g]) => g === n.id) || [, []])[1];
+                mapPanel.innerHTML = `
+                    <div class="mp-kicker">Area</div>
+                    <div class="mp-title">${n.id}</div>
+                    <p class="mp-text">${items.length} ${n.id === SOFT_HUB ? 'ways I work with people' : 'tools and techniques'}: ${items.join(', ')}.</p>
+                    ${legend}`;
+                return;
+            }
+            if (softText.has(n.id)) {
+                mapPanel.innerHTML = `
+                    <div class="mp-kicker">Soft skill</div>
+                    <div class="mp-title">${n.id}</div>
+                    <p class="mp-text">${softText.get(n.id)}</p>
+                    ${legend}`;
+                return;
+            }
+            const used = projectsUsing(n.id);
+            mapPanel.innerHTML = `
+                <div class="mp-kicker">${skillGroupOf.get(n.id) || 'Skill'}</div>
+                <div class="mp-title">${n.id}</div>
+                <p class="mp-text">${used.length ? `Used in ${used.length} project${used.length > 1 ? 's' : ''} on this page:` : 'Part of my toolkit — not tied to a project listed here.'}</p>
+                ${used.length ? `<div class="mp-projects">${used.map(p => `<button class="mp-project" data-open="${p.id}"><span>${p.title}</span><span>→</span></button>`).join('')}</div>` : ''}
+                ${legend}`;
+            mapPanel.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => openDrawer(b.dataset.open)));
+        }
+
+        let lastPanelNode;
+        const skillMap = makeGraph($('#skillMap'), {
+            root: 'Toolkit',
+            edges: mapEdges,
+            repulsion: 1150, restRoot: 170, restHub: 56, gravity: 0.004,
+            rootR: 8, hubR: 6, leafR: 3.2, smallWidth: 560, smallScale: 0.34,
+            leafColor: id => softText.has(id) ? C.nodeSoft : techCount(id) ? C.nodeUsed : C.nodeIdle,
+            showLeafLabels: w => w >= 700,
+            cursorLabel: n => n.kind === 'leaf' ? 'select' : 'drag',
+            onClick: (n, g) => g.pin(n.id),
+            onFocus: n => { if (n !== lastPanelNode) { lastPanelNode = n; renderMapPanel(n); } }
+        });
+        renderMapPanel(null);
+
+        const mapSearch = $('#mapSearch');
+        mapSearch.addEventListener('input', () => {
+            const n = skillMap.find(mapSearch.value);
+            skillMap.pin(n ? n.id : null);
+        });
+        mapSearch.addEventListener('keydown', e => { if (e.key === 'Escape') { mapSearch.value = ''; skillMap.pin(null); } });
+
+        document.querySelectorAll('.view-switch button').forEach(b => b.addEventListener('click', () => {
+            const graph = b.dataset.view === 'graph';
+            document.querySelectorAll('.view-switch button').forEach(x => x.classList.toggle('on', x === b));
+            $('#mapLayout').hidden = !graph;
+            $('#skillsList').hidden = graph;
+            mapSearch.hidden = !graph;
+            if (graph) window.dispatchEvent(new Event('resize'));
+            else $('#skillsList').querySelectorAll('.reveal').forEach(r => r.classList.add('active'));
+        }));
+
+        /* ---------------- Reveal, counters, nav ---------------- */
+
+        const io = new IntersectionObserver(entries => entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('active'); io.unobserve(e.target); }
+        }), { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(n => io.observe(n));
+
+        if (!reduceMotion) {
+            document.querySelectorAll('[data-count]').forEach(n => {
+                const target = +n.dataset.count, suffix = n.dataset.suffix || '';
+                n.textContent = '0' + suffix;
+                setTimeout(() => {
+                    const t0 = performance.now();
+                    const tick = t => {
+                        const k = Math.min(1, (t - t0) / 1400);
+                        n.textContent = Math.round(target * (1 - Math.pow(1 - k, 3))) + suffix;
+                        if (k < 1) requestAnimationFrame(tick);
+                    };
+                    requestAnimationFrame(tick);
+                }, 1300);
+            });
+        }
+
+        const nav = $('#nav');
+        const navAnchors = [...document.querySelectorAll('#navLinks a')];
+        const navTargets = navAnchors.map(a => document.querySelector(a.getAttribute('href')));
+        const onScroll = () => {
+            nav.classList.toggle('scrolled', scrollY > 30);
+            let current = -1;
+            navTargets.forEach((s, i) => { if (s && s.offsetTop - 140 <= scrollY) current = i; });
+            navAnchors.forEach((a, i) => a.classList.toggle('active', i === current));
+        };
+        addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+
+        const menuBtn = $('#menuBtn'), navLinks = $('#navLinks');
+        const setMenu = open => {
+            navLinks.classList.toggle('open', open);
+            menuBtn.setAttribute('aria-expanded', open);
+            menuBtn.textContent = open ? 'Close' : 'Menu';
+        };
+        menuBtn.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
+        navAnchors.forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+        $('#year').textContent = new Date().getFullYear();
+
+        /* ---------------- Theme toggle ---------------- */
+
+        const themeBtn = $('#themeBtn');
+        const metaTheme = document.querySelector('meta[name="theme-color"]');
+        const applyTheme = (t, save) => {
+            document.documentElement.dataset.theme = t;
+            themeBtn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+            metaTheme.setAttribute('content', t === 'dark' ? '#0a0a0b' : '#f6f6fa');
+            if (save) { try { localStorage.setItem('theme', t); } catch (e) {} }
+            readColors();
+            graphs.forEach(g => g.redraw());
+        };
+        applyTheme(document.documentElement.dataset.theme, false);
+        themeBtn.addEventListener('click', () => applyTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark', true));
+
+        /* ---------------- Spotlight on cards ---------------- */
+
+        document.addEventListener('pointermove', e => {
+            const card = e.target.closest && e.target.closest('.service-card, .featured');
+            if (!card) return;
+            const r = card.getBoundingClientRect();
+            card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+            card.style.setProperty('--my', `${e.clientY - r.top}px`);
+        });
+
+        /* ---------------- Custom cursor + magnetic buttons ---------------- */
+
+        if (finePointer && !reduceMotion) {
+            document.body.classList.add('has-cursor');
+            const dot = $('#cursor'), ring = $('#cursorRing'), label = $('#cursorLabel');
+            let mx = -100, my = -100, rx = -100, ry = -100;
+            addEventListener('pointermove', e => {
+                mx = e.clientX; my = e.clientY;
+                dot.style.transform = `translate3d(${mx}px, ${my}px, 0)`;
+                const t = e.target.closest ? e.target.closest('[data-cursor], a, button') : null;
+                const lbl = t && t.dataset ? t.dataset.cursor : null;
+                ring.classList.toggle('label', !!lbl);
+                ring.classList.toggle('hover', !!t && !lbl);
+                if (lbl) label.textContent = lbl;
+            });
+            document.documentElement.addEventListener('pointerleave', () => { mx = my = -100; dot.style.transform = 'translate3d(-100px, -100px, 0)'; });
+            const follow = () => {
+                rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18;
+                ring.style.transform = `translate3d(${rx}px, ${ry}px, 0)`;
+                requestAnimationFrame(follow);
+            };
+            follow();
+
+            document.querySelectorAll('.magnetic').forEach(b => {
+                b.addEventListener('pointermove', e => {
+                    const r = b.getBoundingClientRect();
+                    const x = e.clientX - r.left - r.width / 2, y = e.clientY - r.top - r.height / 2;
+                    b.style.transform = `translate(${x * 0.25}px, ${y * 0.35}px)`;
+                });
+                b.addEventListener('pointerleave', () => { b.style.transform = ''; });
+            });
+        }
+
+        /* ---------------- Copy email + toast ---------------- */
+
+        const toast = $('#toast');
+        let toastTimer;
+        const showToast = msg => {
+            toast.textContent = msg;
+            toast.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+        };
+        const copyEmail = async () => {
+            try { await navigator.clipboard.writeText('pratamarialaura@gmail.com'); showToast('Email copied to clipboard'); }
+            catch { location.href = 'mailto:pratamarialaura@gmail.com'; }
+        };
+        $('#copyEmail').addEventListener('click', copyEmail);
+
+        /* ---------------- Command palette ---------------- */
+
+        const goto = sel => () => document.querySelector(sel).scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+        const openUrl = url => () => window.open(url, '_blank', 'noopener');
+        const ACTIONS = [
+            ['What I do', 'section', goto('#services')],
+            ['Experience', 'section', goto('#experience')],
+            ['Projects', 'section', goto('#projects')],
+            ['How I work (soft skills)', 'section', goto('#soft-skills')],
+            ['Skills & tools map', 'section', goto('#skills')],
+            ['Certifications & education', 'section', goto('#credentials')],
+            ['Contact', 'section', goto('#contact')],
+            ...PROJECTS.map(p => [p.title, 'project', () => openDrawer(p.id)]),
+            ['Copy email address', 'action', copyEmail],
+            ['Toggle light / dark mode', 'action', () => themeBtn.click()],
+            ['LinkedIn', 'link', openUrl('https://www.linkedin.com/in/marialauraprata')],
+            ['GitHub', 'link', openUrl('https://github.com/thefortunetella')],
+            ['WhatsApp', 'link', openUrl('https://wa.me/5527999218414')]
+        ];
+        const pWrap = $('#paletteWrap'), pInput = $('#paletteInput'), pList = $('#paletteList');
+        let pItems = [], pSel = 0;
+        const renderPalette = () => {
+            const q = pInput.value.trim().toLowerCase();
+            pItems = ACTIONS.filter(([label, kind]) => !q || label.toLowerCase().includes(q) || kind.includes(q));
+            pSel = Math.min(pSel, Math.max(0, pItems.length - 1));
+            pList.innerHTML = pItems.length
+                ? pItems.map(([label, kind], i) => `<li role="option" class="${i === pSel ? 'sel' : ''}" data-i="${i}"><span>${label}</span><small>${kind}</small></li>`).join('')
+                : '<li><span>No results</span></li>';
+            const sel = pList.querySelector('.sel');
+            if (sel) sel.scrollIntoView({ block: 'nearest' });
+        };
+        const openPalette = () => {
+            closeDrawer();
+            setMenu(false);
+            pWrap.classList.add('open');
+            pWrap.setAttribute('aria-hidden', 'false');
+            pInput.value = ''; pSel = 0; renderPalette();
+            setTimeout(() => pInput.focus(), 30);
+        };
+        const closePalette = () => { pWrap.classList.remove('open'); pWrap.setAttribute('aria-hidden', 'true'); };
+        const runPalette = i => { const a = pItems[i]; if (!a) return; closePalette(); a[2](); };
+        $('#paletteBtn').addEventListener('click', openPalette);
+        pInput.addEventListener('input', () => { pSel = 0; renderPalette(); });
+        pList.addEventListener('click', e => { const li = e.target.closest('li[data-i]'); if (li) runPalette(+li.dataset.i); });
+        pWrap.addEventListener('click', e => { if (e.target === pWrap) closePalette(); });
+        pInput.addEventListener('keydown', e => {
+            if (!pItems.length) return;
+            if (e.key === 'ArrowDown') { pSel = (pSel + 1) % pItems.length; renderPalette(); e.preventDefault(); }
+            else if (e.key === 'ArrowUp') { pSel = (pSel - 1 + pItems.length) % pItems.length; renderPalette(); e.preventDefault(); }
+            else if (e.key === 'Enter') runPalette(pSel);
+        });
+
+        document.addEventListener('keydown', e => {
+            const paletteOpen = pWrap.classList.contains('open');
+            if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); paletteOpen ? closePalette() : openPalette(); return; }
+            if (e.key === 'Escape') { paletteOpen ? closePalette() : closeDrawer(); return; }
+            if (document.body.classList.contains('drawer-open') && !paletteOpen) {
+                if (e.key === 'ArrowRight') $('#dNext').click();
+                if (e.key === 'ArrowLeft') $('#dPrev').click();
+            }
+        });
+
+        /* Deep link: #project-<id> */
+        const m = location.hash.match(/^#project-(.+)$/);
+        if (m) openDrawer(m[1]);
+    })();
     </script>
 </body>
 </html>
