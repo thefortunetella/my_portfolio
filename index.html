@@ -7,17 +7,17 @@
     <meta name="description" content="Maria Laura Prata — AI Solutions Engineer working on enterprise knowledge graphs, RAG/GraphRAG, AI agents and production machine learning.">
     <meta property="og:title" content="Maria Laura Prata | AI Solutions Engineer & Data Scientist">
     <meta property="og:description" content="I build intelligent systems that transform how businesses operate.">
-    <meta name="theme-color" content="#0a0a0b">
+    <meta name="theme-color" content="#f6f6fa">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
     <script>
-        // Apply the saved or system theme before first paint
+        // Light by default; apply a saved choice before first paint
         (() => {
             let t = null;
             try { t = localStorage.getItem('theme'); } catch (e) {}
-            if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+            if (t !== 'light' && t !== 'dark') t = 'light';
             document.documentElement.dataset.theme = t;
         })();
     </script>
@@ -290,8 +290,8 @@
             letter-spacing: -0.02em;
             margin-bottom: 2rem;
         }
-        .hero h1 em, .hero h1 em span { background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; padding-right: 0.06em; }
-        .hero h1 .word { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.08em; }
+        .hero h1 em, .hero h1 em .word > span { background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; padding: 0.04em 0.14em 0.24em; margin: -0.04em -0.14em -0.24em; }
+        .hero h1 .word { display: inline-block; overflow: hidden; vertical-align: top; padding: 0.04em 0.14em 0.24em; margin: -0.04em -0.14em -0.24em; }
         .hero h1 .word > span {
             display: inline-block;
             transform: translateY(105%);
@@ -437,7 +437,7 @@
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .marquee-item em { background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; padding-right: 0.05em; }
+        .marquee-item em { background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; padding: 0.04em 0.12em 0.2em; margin: -0.04em -0.12em -0.2em; }
         .marquee:hover .marquee-item { color: var(--text); }
         @keyframes scroll { to { transform: translateX(-50%); } }
 
@@ -461,7 +461,7 @@
             line-height: 1.05;
             margin-bottom: 2.8rem;
         }
-        .section-title em { background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; padding-right: 0.06em; }
+        .section-title em { background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; padding: 0.04em 0.12em 0.2em; margin: -0.04em -0.12em -0.2em; }
 
         .reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
         .reveal.active { opacity: 1; transform: none; }
@@ -954,7 +954,7 @@
             line-height: 1;
             margin-bottom: 2rem;
         }
-        .contact-title em { background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; padding-right: 0.06em; }
+        .contact-title em { background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; padding: 0.04em 0.12em 0.2em; margin: -0.04em -0.12em -0.2em; }
         .contact-sub { color: var(--text-muted); margin-bottom: 3rem; }
         .email-big {
             display: inline-flex;
